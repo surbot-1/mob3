@@ -159,7 +159,7 @@ document.getElementById("divCanv").appendChild(canvs);
 	var t = cordt;  
       if (t == 3) { cordt = 0;
 	if (x>0 && x<72 && y>0 && y<144) {          // back
-            clearInterval(inv);  ds1();
+           clearInterval(inv); clrCursor(); ds1();
        } else if (x>72 && x<108 && y>0 && y<144) {  // dp
        } else if (x>108 && x<740 && y>0 && y<144) {  // space
        } else if (x>740 && x<800 && y>0 && y<144) {  // video call
@@ -444,6 +444,14 @@ function writeCursor() {
         ctx.fillRect(ci, cj-32, 4, 32);
         }, 0500);
       }	 
+	
+function clrCursor() {
+        var cvs = document.getElementById("canvas");
+        var ctx = cvs.getContext('2d');
+        clearInterval(cursor);
+        ctx.fillStyle = "white";
+        ctx.fillRect(ci, cj-32, 4, 32);
+        }
   
 	
 </script>
