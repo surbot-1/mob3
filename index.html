@@ -475,12 +475,13 @@ function writeChar() {
 	var keyH = keyHex;
       if(keyH == 0x0F) {       // shift
   } else if(keyH == 0x7F) {    // del
-          cx-=24;
+       ctx.fillStyle = "white";
+       ctx.fillRect(cx, cy, 4, 48);
+	  cx-=24;
        if(cx<128) {cx=128; cy-=48;}
-       if(cx<1440) {cx=128; cy=1440;}
-  ctx.fillStyle = "white";
-  ctx.fillRect(cx, cy, 24, 48);
-  cx=128; cy=1440;
+       if(cy<1440) {cx=128; cy=1440;}
+       ctx.fillStyle = "white";
+       ctx.fillRect(cx, cy, 24, 48);
   } else if(keyH == 0x11) { 
   } else if(keyH == 0x12) {
   } else if(keyH == 0x20) {     // space
