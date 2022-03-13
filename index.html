@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+  
+<body>
+
+<script src="ubuntufont.js"></script>
+<script src="font2448.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	
+<script>
+	
+var elem = document.createElement('div');
+elem.setAttribute("id", "divCanv");
+// elem.setAttribute("border", "solid black 1px");
+// elem.style.cssText = 'position:absolute;width:100%;height:100%;opacity:0.3;z-index:100;background:#000';
+document.body.appendChild(elem);
+
+var canvs = document.createElement("canvas");
+canvs.setAttribute("id", "canvas");
+canvs.setAttribute("width", "1080");
+canvs.setAttribute("height", "2176");  // 2400-112-112=2176
+// canv.setAttribute("border", "solid black 1px");
+document.getElementById("divCanv").appendChild(canvs); 
+	
+</script>
+	
+<script>
+	
+  var cordx, cordy;
+     // ds1();
+  function ds1() {
+	
+    var cx=0, cy=0, cw=1080, ch=2400-112-112; // 2176
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+	  
+	context.fillStyle = "white";
+        context.fillRect(0, 0, 1080, 2400);
+        
+        var image1 = new Image();  // dp 144
+        image1.setAttribute('crossOrigin', 'anonymous');
+        image1.src = 'dp2.png';
+        image1.onload = function (e) {
+        var x = cx;
+	var y = cy;
+	var w = cw;
+	var h = 144;
+          context.drawImage(image1, x, y, w, h);
+        }; 
+	
+        var image2 = new Image();  // text 144
+        image2.setAttribute('crossOrigin', 'anonymous');
+        image2.src = 'text4.png';
+        image2.onload = function (e) {
+	var x = cx;
+	var y = ch-144-640-1+640;  // 1391+640=2031
+	var w = cw;
+	var h = 144;
+          context.drawImage(image2, x, y, w, h);
+        }; 
+	  
+       function handleEnd(evt) {
+       evt.preventDefault();
+       var ele = document.getElementById("canvas");
+       var ctx = ele.getContext("2d");
+       var touches = evt.changedTouches;
+       var  x = touches[0].pageX; cordx = x;
+       var  y = touches[0].pageY; cordy = y;
+	  
+       if (x>0 && x<1080 && y>2032 && y<2176) { 
+           ds2();
+           }
+       }
+	 
+     //  canvas.addEventListener("touchend", handleEnd, false);
+	  
+   }
+	
+        ds2();
+	
+  function ds2() { 
+    cursor = setInterval(writeCursor, 1000);
+    var cx=0, cy=0, cw=1080, ch=2400-112-112; // 2176
+    var cvs = document.getElementById("canvas");
+    var ctx = cvs.getContext('2d');
+	  
+	ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, 1080, 2400);
+	   
+        var image1 = new Image();  // dp 144
+        image1.setAttribute('crossOrigin', 'anonymous');
+        image1.src = 'dp2.png'; 
+        image1.onload = function (e) {
+        var x = cx;
+        var y = cy;
+        var w = cw;
+        var h = 144;
+          ctx.drawImage(image1, 0, 0,1080,144);
+        }; 
+	  
+	var image2 = new Image();  // text 144
+        image2.setAttribute('crossOrigin', 'anonymous');
+        image2.src = 'text4.png';
+        image2.onload = function (e) {
+	var x = cx;
+	var y = ch-144-640-1;  // 1391
+	var w = cw;
+	var h = 144;
+          ctx.drawImage(image2, x, y, w, h);
+        };
+	  
+	var image3 = new Image();  // keypad 640
+        image3.setAttribute('crossOrigin', 'anonymous');
+        image3.src = 'keypad1.png';
+        image3.onload = function (e) { 
+	var x = cx;
+	var y = ch-640-1;    // 1535
+	var w = cw;
+	var h = 640;
+          ctx.drawImage(image3, x, y, w, h); 
+        };
+	  
+    function handleEnd(evt) {
+	       
+       var touches = evt.changedTouches;
+       var  x = touches[0].pageX; cordx = x;
+       var  y = touches[0].pageY; cordy = y;
+	  
+       if (x>0 && x<72 && y>0 && y<144) {          // back
+               ds1();
+       } else if (x>72 && x<108 && y>0 && y<144) {  // dp
+       } else if (x>108 && x<740 && y>0 && y<144) {  // space
+       } else if (x>740 && x<800 && y>0 && y<144) {  // video call
+       } else if (x>880 && x<924 && y>0 && y<144) {  // voice call
+       } else if (x>1000 && x<1040 && y>0 && y<144) {  // option
+       } else if (x>0 && x<1080 && y>144 && y<1392) {  // message_field
+	       
+       } else if (x>0 && x<128 && y>1392 && y<1536) { // emoji
+       } else if (x>128 && x<800 && y>1392 && y<1536) { // type_field
+       } else if (x>800 && x<932 && y>1392 && y<1536) { // attachment
+       } else if (x>932 && x<1080 && y>1392 && y<1536) { // send
+       } else if (x>0 && x<1080 && y>1536 && y<2176) {  // keypad
+	       keypad(); 
+       }
+     }
+     cvs.addEventListener("touchend", handleEnd, false);
+	  
+   }
+	
+
+ 
+	
+
+	
+
+var msgBuf = new ArrayBuffer(256);
+var msgView = new DataView(msgBuf);
+msgView.setUint8(0, 125);
+msgView.getUint8(0); // 125
+var msgArr = new Uint8Array(msgBuf);
+var msgStr;
+
+var qwertyChar    = ["Q","W","E","R","T","Y","U","I","O","P",
+	               "A","S","D","F","G","H","J","K","L",
+	             "SI", "Z","X","C","V","B","N","M","DEL",
+	            "DC1","DC2",",",   "Space",    ".","DC3"];
+
+var qwertyHex     = [0x51,0x57,0x45,0x52,0x54,0x59,0x55,0x49,0x4F,0x50,  // 0-9  QEERTYUIOP
+	               0x41,0x53,0x44,0x46,0x47,0x48,0x4A,0x4B,0x4C,     // 10-18 ASDFGHJKL
+	             0x0F, 0x5A,0x58,0x43,0x56,0x42,0x4E,0x4D, 0x7F,    // 19-27 siZXCVBNMdel
+	             0x11, 0x12,0x2C,       0x20,        0x2E, 0x13];   // 28-33 dc1dc2,Space.dc
+	
+var ci = 16; var cj = 208;
+var cursor; var ptr=0;
+var keyChar;
+var keyHex;
+	
+function keypad() {
+	
+     clearInterval(cursor);
+     writeMessage();
+     storeMessage();
+     cursor = setInterval(writeCursor, 1000); 	
+	
+   } // keypad
+	
+ function readQwerty() {
+	
+     var x = cordx;
+     var y = cordy;
+	
+   if (y>1535 && y<1535+160) {
+     for (let i=0; i<10; i++) {
+       if (x>108*i && x<108*i+108) {
+        keyChar = qwertyChar[i];
+        keyHex = qwertyHex[i];
+       }
+      }
+     }
+	
+   if (y>1535+160 && y<1535+160*2) {
+     for (let i=0; i<1; i++) {
+       if (x>108*i && x<108*i+108+54) {
+        keyChar = qwertyChar[10+i];
+        keyHex = qwertyHex[10+i];
+	 }
+	}
+     for (let i=0; i<7; i++) {
+       if (x>54+108+108*i && x<54+108+108*i+108) {
+        keyChar = qwertyChar[11+i];
+        keyHex = qwertyHex[11+i];
+	 }
+	}
+     for (let i=0; i<1; i++) {
+       if (x>54+108*8+108*i && x<54+108*8+108*i+108+54) {
+        keyChar = qwertyChar[18+i];
+        keyHex = qwertyHex[18+i];
+	 }
+	}
+       }
+	
+   if (y>1535+160*2 && y<1535+160*3) {
+	   
+     for (let i=0; i<1; i++) {
+       if (x>108*i && x<54+108*i+108) {
+        keyChar = qwertyChar[19+i];
+        keyHex = qwertyHex[19+i];
+	 }
+	}
+     for (let i=0; i<7; i++) {
+       if (x>54+108+108*i && x<54+108+108*i+108) {
+        keyChar = qwertyChar[20+i];
+        keyHex = qwertyHex[20+i];
+	 }
+	}
+     for (let i=0; i<1; i++) {
+       if (x>54+108*8+108*i && x<54+108*8+108*i+108+54) {
+        keyChar = qwertyChar[27+i];
+        keyHex = qwertyHex[27+i];
+	 }
+	}
+      }
+	
+    if (y>1535+160*3 && y<1535+160*4) {
+     for (let i=0; i<1; i++) {
+       if (x>108*i && x<108*i+108+54) {
+        keyChar = qwertyChar[28+i];
+        keyHex = qwertyHex[28+i];
+	 }
+	}
+     for (let i=0; i<2; i++) {
+       if (x>54+108+108*i && x<54+108+108*i+108) {
+        keyChar = qwertyChar[29+i];
+        keyHex = qwertyHex[29+i];
+	 }
+	}
+     for (let i=0; i<1; i++) {
+       if (x>54+108*3+108*i && x<54+108*6+108*i+108) {
+        keyChar = qwertyChar[31+i];
+        keyHex = qwertyHex[31+i]; 
+	 }
+	}
+     for (let i=0; i<1; i++) {
+       if (x>54+108*7+108*i && x<54+108*7+108*i+108) {
+        keyChar = qwertyChar[32+i];
+        keyHex = qwertyHex[32+i]; 
+	 }
+	}
+    for (let i=0; i<1; i++) {
+       if (x>54+108*8+108*i && x<54+108*8+108*i+108+54) {
+        keyChar = qwertyChar[33+i];
+        keyHex = qwertyHex[33+i]; 
+	 }
+	}
+      } 
+	
+   }  // read_qwerty
+	
+ 
+
+
+function writeMessage() { 
+  var cvs = document.getElementById("canvas");
+  var ctx = cvs.getContext('2d');
+  var x = cordx;
+  var y = cordy;
+  if (x>0 && x<1080 && y>1536 && y<2176) {
+  readQwerty();
+  var keyC = keyChar; 
+  var canv = document.getElementById("canvas");
+  var ctx = canv.getContext('2d');
+  if(keyC == "SI") { 
+  } else if(keyC == "DEL") {
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 144, 1080, 1247);
+  ci=16; cj=208;
+  } else if(keyC == "DC1") { 
+  } else if(keyC == "DC2") {
+  } else if(keyC == "Space") {
+       ctx.fillStyle = "white";
+       ctx.fillRect(ci, cj-32, 4, 32);
+	  ci+=48;
+       if(ci>1080-48) {ci=16; cj+=64;}
+       if(cj>1392-64) {ci=16; cj=208;}
+	  
+  } else if(keyC == "DC3") {
+       ctx.fillStyle = "white";
+       ctx.fillRect(ci, cj-32, 4, 32);
+	  ci=16; cj+=64;
+       if(cj>1392-64) {ci=16; cj=208;}
+	  
+  } else {
+       // if(ci>1080-48) {ci=16; cj+=64;}
+       // if(cj>1392-64) {ci=16; cj=208;}
+       ctx.fillStyle = "white";
+       ctx.fillRect(ci, cj-32, 4, 32);
+       ctx.font = "48px Arial";
+       ctx.fillStyle = "red";
+       ctx.fillText(keyC, ci, cj);
+           ci+=48;
+       if(ci>1080-48) {ci=16; cj+=64;}
+       if(cj>1392-64) {ci=16; cj=208;}
+       }  
+	  
+     }
+   }   // write_message
+
+	
+function storeMessage() {
+	
+        if (keyChar == "SI") {           // shift_in
+                
+	} else if (keyChar == "DEL") {    // delete
+               msgStr = "";
+               msgArr[ptr] = 0x00;
+               ptr = 0;
+        } else if (keyChar == "DC1") {    // ?123
+	} else if (keyChar == "DC2") {    // emoji
+	} else if (keyChar == "Space") {  // space
+               msgStr += " ";
+               msgArr[ptr] = 0x20;
+               ptr++;
+	} else if (keyChar == "DC3") {    // enter - new_line
+               msgStr += "\n";
+               msgArr[ptr] = 0x0A;
+		ptr++;
+        } else {               
+               msgStr += keyChar;
+               msgArr[ptr] = keyHex;
+               ptr++;
+               }
+	
+       /* if (keyHex == 0x0F) {           // shift_in
+                
+	} else if (keyHex == 0x7F) {    // delete
+               msgStr = "";
+               msgArr[ptr] = 0x00;
+               ptr = 0;
+        } else if (keyChar == 0x11) {    // ?123
+	} else if (keyChar == 0x12) {    // emoji
+	} else if (keyChar == 0x20) {  // space
+               msgStr += " ";
+               msgArr[ptr] = 0x20;
+               ptr++;
+	} else if (keyChar == 0x13) {    // enter
+               msgStr += "\n";
+               msgArr[ptr] = 0x0A;
+		ptr++;
+        } else {               
+               msgStr += keyChar;
+               msgArr[ptr] = keyHex;
+               ptr++;
+               } */
+	
+    }
+	
+function writeCursor() {
+        var cvs = document.getElementById("canvas");
+        var ctx = cvs.getContext('2d');
+	
+        ctx.fillStyle = "blue";
+        ctx.fillRect(ci, cj-32, 4, 32);
+	setTimeout( function() {
+	ctx.fillStyle = "white";
+        ctx.fillRect(ci, cj-32, 4, 32);
+        }, 0500);
+      }	 
+  
+	
+</script>
+	
+	
+	
+<script>
+	      
+         displayChar();
+function displayChar() {
+     
+        var cnv = document.getElementById("canvas");
+        var ctx = cnv.getContext('2d');
+        var imgData = ctx.createImageData(24, 48);
+        
+        var fontBuf = new ArrayBuffer(24*4*48);
+        var fontView = new Uint8Array(fontBuf);
+        
+	var cb = [0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01];
+	var fb; var k=0;
+        for (let i=0; i<3*48; i++) { 
+            for (let j=0; j<8; j++) {
+                 fb = font2448[3*48*33+i] & cb[j]; 
+                 if (fb) {
+		   fontView[k+0] = 0xFF;
+                   fontView[k+1] = 0x00;
+		   fontView[k+2] = 0x00;
+		   fontView[k+3] = 0xFF;
+		    k+=4; 
+                   } else {
+		   fontView[k+0] = 0xFF; 
+		   fontView[k+1] = 0xFF;
+		   fontView[k+2] = 0xFF;
+		   fontView[k+3] = 0xFF;
+		    k+=4; 
+                   }
+		  
+              }
+          }
+        for (let i=0; i<24*4*48; i++) {
+             imgData.data[i] = fontView[i];
+              }
+        ctx.putImageData(imgData,128,1392+48);  
+     } 
+	
+</script>
+
+	
+<script>
+	
+        // displayChar1();
+function displayChar1() {
+        var cb = [0b10000000,0b01000000,0b00100000,0b00010000
+		  0b00001000,0b00000100,0b00000010,0b00000001];
+        var fb;
+	var cnv = document.getElementById("canvas");
+        var ctx = cnv.getContext('2d');
+        var imgData = ctx.createImageData(24, 32);
+        // imgData.data[0] = ubuntuFont[0];
+        var fontBuf = new ArrayBuffer(24*4*32);
+        var fontView = new Uint8Array(buffer);
+            var k=0;
+        for (let i=0; i<3*32; i++) {
+            for (let j=0; j<8; j++) {
+                 fb = ubuntuFont[i+j] & cb[j];  //0b10000000;
+                 if (fb) {
+		   fontView[i+j+k+0] = 0xFF;
+                 } else {
+		   fontView[i+j+k+0] = 0x00; 
+	         }
+		   fontView[i+j+k+1] = 0x00;
+		   fontView[i+j+k+2] = 0x00;
+		   fontView[i+j+k+3] = 0xFF;
+		    k+=4;
+              }
+          }
+        for (let i=0; i<24*4*32; i++) {
+             imgData.data[i] = fontView[i];
+              }
+        ctx.putImageData(imgData,16,208);
+     }
+    
+	
+</script>
+
+	
+	
+	
+<script>
+/*  alert('1'); 
+ function screen1() {
+	 // var c1=true; 
+/// while(c1) {
+    
+  //  var cx=0, cy=0, cw=1080, ch=2400-112-112; // 2176
+    var cvs = document.getElementById("canvas");
+    var ctx = cvs.getContext('2d');
+	    
+        
+        var image1 = new Image();  // dp 144
+       // image1.setAttribute('crossOrigin', 'anonymous');
+        image1.src = 'dp2.png'; 
+        image1.onload = function (e) { // c1 = false;
+      //  var x = cx;
+      // var y = cy;
+// var w = cw;
+//var h = 144;
+          ctx.drawImage(image1, 0, 0,1080,144);
+        }; 
+ } */
+      /*  chk=true; while(chk) {
+	var image2 = new Image();  // text 144
+        image2.setAttribute('crossOrigin', 'anonymous');
+        image2.src = 'text4.png'; 
+        image2.onload = function (e) {
+	var x = cx;
+	var y = ch-144-640-1+640;  // 1391+640=2031
+	var w = cw;
+	var h = 144;
+          context.drawImage(image2, x, y, w, h);
+        }; */
+
+ /* chk=true; while(chk) {
+  function handleEnd(evt) {
+       evt.preventDefault();
+       var el = document.getElementById("canvas");
+       var ctx = el.getContext("2d");
+       var touches = evt.changedTouches;
+       var  x = touches[0].pageX; cordx = x;
+       var  y = touches[0].pageY; cordy = y;
+    
+	     if (x>135 && x<704 && y>2031 && y<2175) {
+               chk=false;  screen2();
+                 }
+       }
+       
+       canvas.addEventListener("touchend", handleEnd, false);
+       } */
+   
+
+  
+</script>
+
+<script>
+  /* alrrt('2');
+  function screen2() { */
+	
+  /*  var cx=0, cy=0, cw=1080, ch=2400-112-112; // 2176
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext('2d');
+	 
+    var image2 = new Image();  // text 144
+        image2.setAttribute('crossOrigin', 'anonymous');
+        image2.src = 'text4.png';
+        image2.onload = function (e) {
+	var x = cx;
+	var y = ch-144-640-1;  // 1391
+	var w = cw;
+	var h = 144;
+          context.drawImage(image2, x, y, w, h);
+        };
+        
+        var image3 = new Image();  // keypad 640
+        image3.setAttribute('crossOrigin', 'anonymous');
+        image3.src = 'keypad1.png';
+        image3.onload = function (e) {
+	var x = cx;
+	var y = ch-640-1;    // 1535
+	var w = cw;
+	var h = 640;
+          context.drawImage(image3, x, y, w, h);
+        }; */
+	 
+     /*  var cordx, cordy;
+       var ci = 16; var cj = 208; 
+  function textMessage() {
+       var x = cordx;
+       var y = cordy;
+       readQwerty();
+       var keyC = keyChar; 
+       if(keyC == "SI") { 
+       } else if(keyC == "DEL") {
+              ctx.fillStyle = "white";
+              ctx.fillRect(0, 144, 1080, 1247);
+              ci=16; cj=208;
+       } else if(keyC == "DC1") { 
+       } else if(keyC == "DC2") {
+       } else if(keyC == "Space") {
+              if(ci>1080-48) {ci=16; cj+=64;}
+              if(cj>1392-64) {ci=16; cj=208;}
+	       ci+=48;
+       } else if(keyC == "DC3") {
+              if(cj>1392-64) {ci=16; cj=208;}
+	      ci=16; cj+=64;
+       } else {
+             if(ci>1080-48) {ci=16; cj+=64;}
+             if(cj>1392-64) {ci=16; cj=208;}
+             ctx.font = "48px Arial";
+             ctx.fillStyle = "red";
+             ctx.fillText(keyC, ci, cj);
+             ci+=48;
+        } 
+     }   */
+    
+/* while(true) {
+  function handleEnd(evt) {
+       evt.preventDefault();
+       var el = document.getElementById("canvas");
+       var ctx = el.getContext("2d");
+       var touches = evt.changedTouches;
+       var  x = touches[0].pageX; cordx = x;
+       var  y = touches[0].pageY; cordy = y;
+	  
+       if (x>0 && x<1080 && y>1535 && y<2175) { 
+       // textMessage();
+           }
+       }
+	 
+    canvas.addEventListener("touchend", handleEnd, false);
+    } 
+    
+ } */ 
+  
+</script>
+  
+<script>
+  
+</script>
+  
+<script>
+  
+</script>
+  
+<script>
+  
+</script>
+  
+<script>
+  
+</script>
+	
+</body>
+</html>
