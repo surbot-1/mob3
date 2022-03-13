@@ -152,6 +152,32 @@ document.getElementById("divCanv").appendChild(canvs);
 	var h = 640;
           ctx.drawImage(image3, x, y, w, h); 
         };
+	  
+        var inv;
+    function chk() { 
+	var x = cordx;  var y = cordy; 
+	var t = cordt;  
+      if (t == 3) { cordt = 0;
+	if (x>0 && x<72 && y>0 && y<144) {          // back
+            clearInterval(inv);  ds1();
+       } else if (x>72 && x<108 && y>0 && y<144) {  // dp
+       } else if (x>108 && x<740 && y>0 && y<144) {  // space
+       } else if (x>740 && x<800 && y>0 && y<144) {  // video call
+       } else if (x>880 && x<924 && y>0 && y<144) {  // voice call
+       } else if (x>1000 && x<1040 && y>0 && y<144) {  // option
+       } else if (x>0 && x<1080 && y>144 && y<1392) {  // message_field
+	       
+       } else if (x>0 && x<128 && y>1392 && y<1536) { // emoji
+       } else if (x>128 && x<800 && y>1392 && y<1536) { // type_field
+       } else if (x>800 && x<932 && y>1392 && y<1536) { // attachment
+       } else if (x>932 && x<1080 && y>1392 && y<1536) { // send
+       } else if (x>0 && x<1080 && y>1536 && y<2176) {  // keypad
+	       keypad(); 
+       }
+      }
+     }
+     inv = setInterval(chk, 0100);
+	    
    /*
     function handleEnd(evt) {
 	       
