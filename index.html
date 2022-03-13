@@ -34,7 +34,7 @@ document.getElementById("divCanv").appendChild(canvs);
      var cordx, cordy, cordt=0;
      var canvas = document.getElementById("canvas");
      var context = canvas.getContext('2d');
-     function handleEnd(evt) { ds2();
+     function handleEnd(evt) { 
        evt.preventDefault();
        var ele = document.getElementById("canvas");
        var ctx = ele.getContext("2d");
@@ -42,13 +42,14 @@ document.getElementById("divCanv").appendChild(canvs);
        var  x = touches[0].pageX; cordx = x;
        var  y = touches[0].pageY; cordy = y;
        var  t = 3;                cordt = t;  // touchend
-       }
-     canvas.addEventListener("touchend", handleEnd, false);
+       ds1();
+      }
+      canvas.addEventListener("touchend", handleEnd, false);
 	
 	
 	
   
-      ds1();
+     // ds1();
   function ds1() {
 	
     var cx=0, cy=0, cw=1080, ch=2400-112-112; // 2176
@@ -80,16 +81,16 @@ document.getElementById("divCanv").appendChild(canvs);
           context.drawImage(image2, x, y, w, h);
         }; 
 	  
+	function chk() { 
 	var x = cordx;  var y = cordy; 
 	var t = cordt;  var inv;
-	  function check() { 
            if (t == 3) { cordt = 0;
               if (x>0 && x<1080 && y>2032 && y<2176) { 
               clearInterval(inv); ds2(); 
                }
              }
 	   }
-	  inv = setInterval(check, 0100); 
+	  inv = setInterval(chk, 0100); 
 	  
       /* function handleEnd(evt) {
        evt.preventDefault();
@@ -103,8 +104,8 @@ document.getElementById("divCanv").appendChild(canvs);
            ds2();
            }
        }
-       canvas.addEventListener("touchend", handleEnd, false); */
-	  
+       canvas.addEventListener("touchend", handleEnd, false); 
+        */
    }
 	
        // ds2();
