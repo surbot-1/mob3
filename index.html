@@ -34,7 +34,7 @@ document.getElementById("divCanv").appendChild(canvs);
      var cordx, cordy, cordt=0;
      var canvas = document.getElementById("canvas");
      var context = canvas.getContext('2d');
-     function handleEnd(evt) {
+     function handleEnd(evt) { ds2();
        evt.preventDefault();
        var ele = document.getElementById("canvas");
        var ctx = ele.getContext("2d");
