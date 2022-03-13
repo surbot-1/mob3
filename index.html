@@ -464,7 +464,7 @@ function clrCursor() {
 <script>
 	      
     var cx=128; var cy=1440; var cp;
-function updateCur() {
+function writeChar() {
 	var x = cordx;
         var y = cordy;
   if (x>0 && x<1080 && y>1536 && y<2176) {
@@ -497,7 +497,7 @@ function updateCur() {
        ctx.fillStyle = "white";
        ctx.fillRect(cx, cy, 4, 32);
         cp = keyH-0x20;
-        writeChar();
+        putChar();
         cx+=48;
        if(cx>800) {cx=144; cy+=48;}
        if(cy>1488) {cx=144; cy=1440;}
@@ -505,7 +505,7 @@ function updateCur() {
      }
    }
 	
-function writeChar() {
+function putChar() {
 	
         var cnv = document.getElementById("canvas");
         var ctx = cnv.getContext('2d');
