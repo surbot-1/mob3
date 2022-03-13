@@ -81,9 +81,10 @@ document.getElementById("divCanv").appendChild(canvs);
           context.drawImage(image2, x, y, w, h);
         }; 
 	  
+	var inv;
 	function chk() { 
 	var x = cordx;  var y = cordy; 
-	var t = cordt;  var inv;
+	var t = cordt;  
            if (t == 3) { cordt = 0;
               if (x>0 && x<1080 && y>2032 && y<2176) { 
               clearInterval(inv); ds2(); 
