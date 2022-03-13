@@ -235,7 +235,7 @@ var ci = 16; var cj = 208;
 var cursor; var ptr=0;
 var keyChar;
 var keyHex;
-var cx=128; var cy=1440; var cp;
+var cx=128; var cy=1440; var cp=33;
 	
 function keypad() {
 	
@@ -442,10 +442,10 @@ function writeCursor() {
         var ctx = cvs.getContext('2d');
 	
         ctx.fillStyle = "blue";
-        ctx.fillRect(cx, cy, 4, 32);
+        ctx.fillRect(cx, cy, 4, 48);
 	setTimeout( function() {
 	ctx.fillStyle = "white";
-        ctx.fillRect(cx, cy, 4, 32);
+        ctx.fillRect(cx, cy, 4, 48);
         }, 0500);
       }	 
 	
@@ -454,7 +454,7 @@ function clrCursor() {
         var ctx = cvs.getContext('2d');
         clearInterval(cursor);
         ctx.fillStyle = "white";
-        ctx.fillRect(cx, cy, 4, 32);
+        ctx.fillRect(cx, cy, 4, 48);
         }
   
 	
@@ -506,6 +506,7 @@ function writeChar() {
      }
    }
 	
+	putChar();
 function putChar() {
 	
         var cnv = document.getElementById("canvas");
@@ -542,7 +543,7 @@ function putChar() {
         ctx.putImageData(imgData,cx, cy);   
     
      } 
-    }
+    
 	
 </script>
 
