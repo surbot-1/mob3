@@ -613,14 +613,19 @@ function sendMessage() {
 	 oh1=kHex-0x20;
 	 putChar1();
 	 cx1+=28;
-	 if (cx1>1080) {cx1=256; cy1+=64;}
+	 if (cx1>1080) {cx1=512; cy1+=64;}
 	 if (cy1>1392) {
 	  cx1=512; cy1=208;
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, 1080, 1391);
          }
       }
-       cx1=512;
+       cx1=512; cy1+=64;
+	if (cy1>1392) {
+          cx1=512; cy1=208;
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, 1080, 1391);
+         }
        cls=0; cla=0; cpr=0;
 }
 		
