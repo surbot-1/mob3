@@ -430,7 +430,7 @@ function storeMessageStr() {
 	
  function storeMessageArr() {
 	 
-	 /* readQwerty();
+	  readQwerty();
 	 var keyC = keyChar;
 	 var keyH = keyHex;
 	
@@ -455,7 +455,7 @@ function storeMessageStr() {
                msgArr[cpr] = keyH;
                cls++; cla++; cpr++;
                } 
-       */
+       
    }
 	
 function writeCursor() {
@@ -591,17 +591,36 @@ function putChar() {
 	
 <script>
 	
-var cx1=16; var cy1=208; var cw1=32; var ch1=64;
+var cx1=512; var cy1=208; var cw1=24; var ch1=48;
 var oh1=33;
 function sendMessage() {
-     
+
+      var cnv = document.getElementById("canvas");
+      var ctx = cnv.getContext('2d');
+          ctx.fillStyle = "white";
+          ctx.fillRect(128, 1416, 800-128, 48*2);
+          cx=cxi; cy=cyi;
+          cls=0; cla=0; cpr=0;
+         
     for (let i=0; i<cpr; i++) {
          kHex = msgArr[i];
+	 if (kHex==0x0A) {cx1=512; cy1+=64;}
+	 if (cy1>1392) {
+	  cx1=512; cy1=208;
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, 1080, 1391);
+         }
 	 oh1=kHex-0x20;
 	 putChar1();
-	 cx1+=40;
-	}
-    
+	 cx1+=28;
+	 if (cx1>1080) {cx1=256; cy1+=64;}
+	 if (cy1>1392) {
+	  cx1=512; cy1=208;
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, 1080, 1391);
+         }
+      }
+       cx1=512;
 }
 		
 </script>
@@ -621,7 +640,7 @@ function putChar1() {
         var fontView = new Uint8Array(fontBuf);
              
 	var cb = [0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01];
-	var fb; var k=0; 
+	var fb; var k=0; // oh1=kHex-0x20;
         for (let i=0; i<(cw1/8)*ch1; i++) { 
             for (let j=0; j<8; j++) {
                  fb = font3264[(cw1/8)*ch1*oh1+i] & cb[j]; 
@@ -652,6 +671,10 @@ function putChar1() {
 	
 	
 <script>
+	
+	
+	
+	
 	
        // displayChar1();
 function displayChar1() {
