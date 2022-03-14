@@ -568,7 +568,7 @@ function putChar1() {
 	var fb; var k=0;
         for (let i=0; i<4*64; i++) { 
             for (let j=0; j<8; j++) {
-                 fb = font2448[4*64*cp+i] & cb[j]; 
+                 fb = font3264[4*64*cp+i] & cb[j]; 
                  if (fb) {
 		   fontView[k+0] = 0xFF;
                    fontView[k+1] = 0x00;
