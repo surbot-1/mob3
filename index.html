@@ -589,10 +589,10 @@ function putChar1() {
         var fontView = new Uint8Array(fontBuf);
              
 	var cb = [0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01];
-	var fb; var k=0; var oh=65; // 0x41-0x20;
-        for (let i=0; i<(cw/4)*ch; i++) { 
+	var fb; var k=0; var oh=0x41-0x20;
+        for (let i=0; i<(cw/8)*ch; i++) { 
             for (let j=0; j<8; j++) {
-                 fb = font3264[(cw/4)*ch*oh+i] & cb[j]; 
+                 fb = font3264[(cw/8)*ch*oh+i] & cb[j]; 
                  if (fb) {
 		   fontView[k+0] = 0x00;
                    fontView[k+1] = 0x00;
