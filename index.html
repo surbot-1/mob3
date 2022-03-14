@@ -478,8 +478,8 @@ function writeChar() {
        ctx.fillStyle = "white";
        ctx.fillRect(cx, cy, 4, 48);
 	  cx-=24;
-       if(cx<128) {cx=128; cy-=48;}
-       if(cy<1440) {cx=128; cy=1440;}
+       if(cx<128 && cy==1440) {cx=128; cy=1440;}
+       if(cx<128 && cy>1440) {cx=128; cy-=48;}
        ctx.fillStyle = "white";
        ctx.fillRect(cx, cy, 24, 48);
   } else if(keyH == 0x11) { 
@@ -487,16 +487,16 @@ function writeChar() {
   } else if(keyH == 0x20) {     // space
        ctx.fillStyle = "white";
        ctx.fillRect(cx, cy, 4, 48);
-	  cx+=24;
-       if(cx>800 && cy<1488) {cx=128; cy+=48;}
-       if(cx>800 && cy==1488) {cx=800; cy=1488;}
+	   cx+=24;
+       if(cx>800) {cx=128; cy+=48;}
+       if(cy>1488) {cx=128; cy=1400;}
 	  
   } else if(keyH == 0x13) {    // enter
        ctx.fillStyle = "white";
        ctx.fillRect(cx, cy, 4, 48);
-	  cx=128; cy+=48;
-       if(cx>800) {cx=128; cy+=48;}
+	 cx=128; cy+=48;
        if(cy>1488) {cx=128; cy=1440;}
+       
 	  
   } else {
        ctx.fillStyle = "white";
