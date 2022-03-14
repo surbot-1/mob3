@@ -240,16 +240,17 @@ var keyHex;
 var cxi=128;  var cxf=800;
 var cyi=1440-24; var cyf=1488-24;
 var cx=128; var cy=1440-24; var cp;
+var cxp; var cyp;
 var cw=24; var ch=48; var oh=33;
 	
 function keypad() {
-	
+     cxp=cx; cyp=cy;
      clearInterval(cursor);
      showCursor();
      writeChar();
    //  writeMessage();
      storeMessage();
-     incCursor();
+     updateCursor();
      cursor = setInterval(writeCursor, 1000); 	
 	
    } // keypad
@@ -463,11 +464,11 @@ function showCursor() {
         ctx.fillRect(cx-4, cy, 4, 48);
         }
 	
-function incCursor() {
+function updateCursor() {
         var cvs = document.getElementById("canvas");
         var ctx = cvs.getContext('2d');
         ctx.fillStyle = "white";
-        ctx.fillRect(cx-4-28, cy, 4, 48);
+        ctx.fillRect(cxp-4, cyp, 4, 48);
 	ctx.fillStyle = "blue";
         ctx.fillRect(cx-4, cy, 4, 48);
         }
@@ -509,7 +510,7 @@ function writeChar() {
   } else if(keyH == 0x12) {
   } else if(keyH == 0x20) {     // space
        ctx.fillStyle = "white";
-       ctx.fillRect(cx-4, cy, 4, 48);
+       ctx.fillRect(cx-4, cy, 28, 48);
 	   cx+=28;
        if(cx>cxf) {cx=cxi; cy+=48;}
        if(cy>cyf) {cx=cxi; cy=cyi;}
