@@ -488,8 +488,8 @@ function writeChar() {
        ctx.fillStyle = "white";
        ctx.fillRect(cx, cy, 4, 48);
 	  cx+=24;
-       if(cx>800) {cx=128; cy+=48;}
-       if(cy>1488) {cx=128; cy=1440;}
+       if(cx>800 && cy<1488) {cx=128; cy+=48;}
+       if(cx>800 && cy==1488) {cx=800; cy=1488;}
 	  
   } else if(keyH == 0x13) {    // enter
        ctx.fillStyle = "white";
