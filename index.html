@@ -556,19 +556,19 @@ function putChar() {
 	
 	putChar1();
 function putChar1() {
-	
+        cx = 16; cy = 208;
         var cnv = document.getElementById("canvas");
         var ctx = cnv.getContext('2d');
-        var imgData = ctx.createImageData(24, 48);
+        var imgData = ctx.createImageData(32, 64);
         
-        var fontBuf = new ArrayBuffer(24*4*48);
+        var fontBuf = new ArrayBuffer(32*4*64);
         var fontView = new Uint8Array(fontBuf);
              
 	var cb = [0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01];
 	var fb; var k=0;
-        for (let i=0; i<3*48; i++) { 
+        for (let i=0; i<4*64; i++) { 
             for (let j=0; j<8; j++) {
-                 fb = font2448[3*48*cp+i] & cb[j]; 
+                 fb = font2448[4*64*cp+i] & cb[j]; 
                  if (fb) {
 		   fontView[k+0] = 0xFF;
                    fontView[k+1] = 0x00;
@@ -585,7 +585,7 @@ function putChar1() {
 		  
               }
           }
-        for (let i=0; i<24*4*48; i++) {
+        for (let i=0; i<32*4*64; i++) {
              imgData.data[i] = fontView[i];
               }
         ctx.putImageData(imgData,cx, cy);   
@@ -597,19 +597,19 @@ function putChar1() {
 	
 <script>
 	
-        // displayChar1();
+       // displayChar1();
 function displayChar1() {
         var cb = [0b10000000,0b01000000,0b00100000,0b00010000
 		  0b00001000,0b00000100,0b00000010,0b00000001];
         var fb;
 	var cnv = document.getElementById("canvas");
         var ctx = cnv.getContext('2d');
-        var imgData = ctx.createImageData(24, 32);
+        var imgData = ctx.createImageData(32, 64);
         // imgData.data[0] = ubuntuFont[0];
-        var fontBuf = new ArrayBuffer(24*4*32);
+        var fontBuf = new ArrayBuffer(32*4*64);
         var fontView = new Uint8Array(buffer);
             var k=0;
-        for (let i=0; i<3*32; i++) {
+        for (let i=0; i<4*64; i++) {
             for (let j=0; j<8; j++) {
                  fb = ubuntuFont[i+j] & cb[j];  //0b10000000;
                  if (fb) {
@@ -623,7 +623,7 @@ function displayChar1() {
 		    k+=4;
               }
           }
-        for (let i=0; i<24*4*32; i++) {
+        for (let i=0; i<32*4*64; i++) {
              imgData.data[i] = fontView[i];
               }
         ctx.putImageData(imgData,16,208);
