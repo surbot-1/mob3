@@ -226,7 +226,7 @@ var msgStr;
 var qwertyChar    = ["Q","W","E","R","T","Y","U","I","O","P",
 	               "A","S","D","F","G","H","J","K","L",
 	             "SI", "Z","X","C","V","B","N","M","BS",
-	            "DC1","DC2",",",   "Space",    ".","DC3"];
+	            "DC1","DC2",",",   "SPACE",    ".","DC3"];
 
 var qwertyHex     = [0x51,0x57,0x45,0x52,0x54,0x59,0x55,0x49,0x4F,0x50,  // 0-9  QEERTYUIOP
 	               0x41,0x53,0x44,0x46,0x47,0x48,0x4A,0x4B,0x4C,     // 10-18 ASDFGHJKL
@@ -369,7 +369,7 @@ function writeMessage() {
   ci=16; cj=208;
   } else if(keyC == "DC1") { 
   } else if(keyC == "DC2") {
-  } else if(keyC == "Space") {
+  } else if(keyC == "SPACE") {
        ctx.fillStyle = "white";
        ctx.fillRect(ci, cj-32, 4, 32);
 	  ci+=48;
@@ -411,7 +411,7 @@ function storeMessageStr() {
                cls--; cla--; cpr--;
         } else if (keyC == "DC1") {    // ?123
 	} else if (keyC == "DC2") {    // emoji
-	} else if (keyC == "Space") {  // space
+	} else if (keyC == "SPACE") {  // space
                msgStr += " ";
                msgArr[cpr] = 0x20;
                cls++; cla++; cpr++;
