@@ -240,7 +240,7 @@ var keyHex;
 var cxi=128;  var cxf=800;
 var cyi=1440-24; var cyf=1488-24;
 var cx=128; var cy=1440-24; var cp;
-var cw=24; var ch=48;
+var cw=24; var ch=48; var oh=33;
 	
 function keypad() {
 	
@@ -506,7 +506,7 @@ function writeChar() {
   } else {
        ctx.fillStyle = "white";
        ctx.fillRect(cx-4, cy, 4, 48);
-        cp = keyH-0x20;
+        oh = keyH-0x20;
         putChar();
         cx+=28;
        if(cx>cxf) {cx=cxi; cy+=48;}
@@ -526,7 +526,7 @@ function putChar() {
         var fontView = new Uint8Array(fontBuf);
              
 	var cb = [0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01];
-	var fb; var k=0; var oh=33;
+	var fb; var k=0; 
         for (let i=0; i<3*48; i++) { 
             for (let j=0; j<8; j++) {
                  fb = font2448[3*48*oh+i] & cb[j]; 
