@@ -175,6 +175,7 @@ document.getElementById("divCanv").appendChild(canvs);
        } else if (x>128 && x<800 && y>1392 && y<1536) { // type_field
        } else if (x>800 && x<932 && y>1392 && y<1536) { // attachment
        } else if (x>932 && x<1080 && y>1392 && y<1536) { // send
+	       sendMessage();
        } else if (x>0 && x<1080 && y>1536 && y<2176) {  // keypad
 	       keypad(); 
        }
@@ -202,6 +203,7 @@ document.getElementById("divCanv").appendChild(canvs);
        } else if (x>128 && x<800 && y>1392 && y<1536) { // type_field
        } else if (x>800 && x<932 && y>1392 && y<1536) { // attachment
        } else if (x>932 && x<1080 && y>1392 && y<1536) { // send
+                // sendMessage();
        } else if (x>0 && x<1080 && y>1536 && y<2176) {  // keypad
 	       keypad(); 
        }
@@ -400,7 +402,7 @@ function writeMessage() {
 
 	
 function storeMessageStr() {
-       /* readQwerty();
+        readQwerty();
         var keyC = keyChar;
         var keyH = keyHex;
         if (keyC == "SI") {           // shift_in
@@ -423,7 +425,7 @@ function storeMessageStr() {
                msgStr += keyC;
                msgArr[cpr] = keyH;
                cls++; cla++; cpr++;
-               }  */
+               }  
      }
 	
  function storeMessageArr() {
@@ -593,13 +595,13 @@ var cx1=16; var cy1=208; var cw1=32; var ch1=64;
 var oh1=33;
 function sendMessage() {
      
-  /*   for (let i=0; i<cpr; i++) {
+    for (let i=0; i<cpr; i++) {
          kHex = msgArr[i];
 	 oh1=kHex-0x20;
 	 putChar1();
 	 cx1+=40;
 	}
-    */
+    
 }
 		
 </script>
