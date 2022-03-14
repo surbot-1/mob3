@@ -482,7 +482,7 @@ function writeChar() {
        ctx.fillStyle = "white";
        ctx.fillRect(cx-4, cy, 4, 48);
 	  cx-=28;
-       if(cx<cxi) {cx=cxi; cy-=48;}
+       if(cx<cxi) {cx=cxf; cy-=48;}
        if(cy<cyi) {cx=cxf; cy=cyf;}
        ctx.fillStyle = "white";
        ctx.fillRect(cx, cy, 24, 48);
@@ -509,7 +509,7 @@ function writeChar() {
         putChar();
         cx+=28;
        if(cx>cxf) {cx=cxi; cy+=48;}
-       if(cy>cyf) {cx=cxi; cy=cyf;}
+       if(cy>cyf) {cx=cxi; cy=cyi;}
        }  
      }
    }
