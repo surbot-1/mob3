@@ -609,17 +609,17 @@ function sendMessage() {
 	     if (cy1>1392-64) {
 	     cx1=512; cy1=208;
              ctx.fillStyle = "white";
-             ctx.fillRect(128, 0, 1080, 1391);
+             ctx.fillRect(0, 144, 1080, 1391);
              }
          } else {
             oh1=kHex-0x20;
 	    putChar1();
 	    cx1+=28;
-	    if (cx1>1080) {cx1=512; cy1+=64;}
+	    if (cx1>1080-28) {cx1=512; cy1+=64;}
 	    if (cy1>1392-64) {
 	    cx1=512; cy1=208;
             ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, 1080, 1391);
+            ctx.fillRect(0, 144, 1080, 1391);
              }
            }
          }
