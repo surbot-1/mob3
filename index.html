@@ -235,7 +235,7 @@ var qwertyHex     = [0x51,0x57,0x45,0x52,0x54,0x59,0x55,0x49,0x4F,0x50,  // 0-9 
 	
 var ci = 16; var cj = 208;
 var cursor; var ptr=0;
-var cls=0; var cla=0;
+var cls=0; var cla=0; var cpr=0;
 var keyChar;
 var keyHex; 
 var cxi=128;  var cxf=800;
@@ -407,22 +407,22 @@ function storeMessageStr() {
                 
 	} else if (keyC == "BS") {    // back_space
                msgStr = "";
-               msgArr[cla] = 0x00;
-               cls--; cla--;
+               msgArr[cpr] = 0x00;
+               cls--; cla--; cpr--;
         } else if (keyC == "DC1") {    // ?123
 	} else if (keyC == "DC2") {    // emoji
 	} else if (keyC == "Space") {  // space
                msgStr += " ";
-               msgArr[cla] = 0x20;
-               cls++; cla++;
+               msgArr[cpr] = 0x20;
+               cls++; cla++; cpr++;
 	} else if (keyC == "DC3") {    // enter - new_line
                msgStr += "\n";
-               msgArr[cla] = 0x0A;
-               cls++; cla++;
+               msgArr[cpr] = 0x0A;
+               cls++; cla++; cpr++;
         } else {               
                msgStr += keyC;
-               msgArr[cla] = keyH;
-               cls++; cla++;
+               msgArr[cpr] = keyH;
+               cls++; cla++; cpr++;
                }
      }
 	
@@ -436,22 +436,22 @@ function storeMessageStr() {
                 
 	} else if (keyH == 0x08) {    // back_space
                msgStr = "";
-               msgArr[cla] = 0x00;
-               cls--; cla--;
+               msgArr[cpr] = 0x00;
+               cls--; cla--; cpr--;
         } else if (keyH == 0x11) {    // ?123
 	} else if (keyH == 0x12) {    // emoji
 	} else if (keyH == 0x20) {    // space
                msgStr += " ";
-               msgArr[cla] = 0x20;
-               cls++; cla++;
+               msgArr[cpr] = 0x20;
+               cls++; cla++; cpr++;
 	} else if (keyH == 0x13) {    // enter
                msgStr += "\n";
-               msgArr[cla] = 0x0A;
-               cls++; cla++;
+               msgArr[cpr] = 0x0A;
+               cls++; cla++; cpr++;
         } else {               
                msgStr += keyC;
-               msgArr[cla] = keyH;
-               cls++; cla++;
+               msgArr[cpr] = keyH;
+               cls++; cla++; cpr++;
                } 
 	
    }
@@ -509,7 +509,7 @@ function writeChar() {
 	readQwerty();
 	var keyH = keyHex;
       if(keyH == 0x0F) {       // shift
-  } else if(keyH == 0x7F) {    // del
+  } else if(keyH == 0x08) {    // back_space
        ctx.fillStyle = "white";
        ctx.fillRect(cx-4, cy, 4, 48);
 	  cx-=28;
