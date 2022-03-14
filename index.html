@@ -598,36 +598,38 @@ function sendMessage() {
       var cnv = document.getElementById("canvas");
       var ctx = cnv.getContext('2d');
           ctx.fillStyle = "white";
-          ctx.fillRect(128, 1416, 800-128, 48*2);
+          ctx.fillRect(128, 1416, 800-128+28, 48*2);
           cx=cxi; cy=cyi;
           
          
     for (let i=0; i<cpr; i++) {
-         kHex = msgArr[i];
-	 if (kHex==0x0A) {cx1=512; cy1+=64;}
-	 if (cy1>1392) {
-	  cx1=512; cy1=208;
-          ctx.fillStyle = "white";
-          ctx.fillRect(0, 0, 1080, 1391);
-         }
-	 oh1=kHex-0x20;
-	 putChar1();
-	 cx1+=28;
-	 if (cx1>1080) {cx1=512; cy1+=64;}
-	 if (cy1>1392) {
-	  cx1=512; cy1=208;
-          ctx.fillStyle = "white";
-          ctx.fillRect(0, 0, 1080, 1391);
-         }
-      }
-       cx1=512; cy1+=64;
+        kHex = msgArr[i];
+	if (kHex==0x0A) {
+             cx1=512; cy1+=64;
+	     if (cy1>1392-64) {
+	     cx1=512; cy1=208;
+             ctx.fillStyle = "white";
+             ctx.fillRect(128, 0, 1080, 1391);
+             }
+         } else {
+            oh1=kHex-0x20;
+	    putChar1();
+	    cx1+=28;
+	    if (cx1>1080) {cx1=512; cy1+=64;}
+	    if (cy1>1392) {
+	    cx1=512; cy1=208;
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, 1080, 1391);
+             }
+            }
+        cx1=512; cy1+=64;
 	if (cy1>1392) {
           cx1=512; cy1=208;
           ctx.fillStyle = "white";
           ctx.fillRect(0, 0, 1080, 1391);
-         }
+          }
        cls=0; cla=0; cpr=0;
-}
+  }
 		
 </script>
 
