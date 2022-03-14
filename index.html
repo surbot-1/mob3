@@ -175,6 +175,7 @@ document.getElementById("divCanv").appendChild(canvs);
        } else if (x>128 && x<800 && y>1392 && y<1536) { // type_field
        } else if (x>800 && x<932 && y>1392 && y<1536) { // attachment
        } else if (x>932 && x<1080 && y>1392 && y<1536) { // send
+	       sendMessage();
        } else if (x>0 && x<1080 && y>1536 && y<2176) {  // keypad
 	       keypad(); 
        }
@@ -236,8 +237,8 @@ var qwertyHex     = [0x51,0x57,0x45,0x52,0x54,0x59,0x55,0x49,0x4F,0x50,  // 0-9 
 var ci = 16; var cj = 208;
 var cursor; var ptr=0;
 var cls=0; var cla=0; var cpr=0;
-var keyChar;
-var keyHex; 
+var keyChar; kChar;
+var keyHex;  kHex;
 var cxi=128;  var cxf=800;
 var cyi=1440-24; var cyf=1488-24;
 var cx=128; var cy=1440-24; var cp;
@@ -589,10 +590,19 @@ function putChar() {
 	
 <script>
 	
-	
-	
-	
-	
+var cx1=16; var cy1=208; var cw1=32; var ch1=64;
+var oh1;
+function sendMessage() {
+     
+     for (let i=0; i<cpr; i++) {
+         kHex = msgArr[i];
+	 oh1=kHex-0x20;
+	 putChar1();
+	 cx1+=40;
+	}
+
+}
+		
 </script>
 
 	
@@ -600,19 +610,20 @@ function putChar() {
 	
 	putChar1();
 function putChar1() {
-        var cx=16; var cy=208; var cw=32; var ch=64;
+        // var cx=16; var cy=208; var cw=32; var ch=64;
+        // var oh=kHex-0x20;
         var cnv = document.getElementById("canvas");
         var ctx = cnv.getContext('2d');
-        var imgData = ctx.createImageData(cw, ch);
+        var imgData = ctx.createImageData(cw1, ch1);
         
-        var fontBuf = new ArrayBuffer(cw*4*ch);
+        var fontBuf = new ArrayBuffer(cw1*4*ch1);
         var fontView = new Uint8Array(fontBuf);
              
 	var cb = [0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01];
-	var fb; var k=0; var oh=0x41-0x20;
-        for (let i=0; i<(cw/8)*ch; i++) { 
+	var fb; var k=0; 
+        for (let i=0; i<(cw1/8)*ch1; i++) { 
             for (let j=0; j<8; j++) {
-                 fb = font3264[(cw/8)*ch*oh+i] & cb[j]; 
+                 fb = font3264[(cw1/8)*ch1*oh1+i] & cb[j]; 
                  if (fb) {
 		   fontView[k+0] = 0x00;
                    fontView[k+1] = 0x00;
@@ -629,10 +640,10 @@ function putChar1() {
 		  
               }
           }
-        for (let i=0; i<cw*4*ch; i++) {
+        for (let i=0; i<cw1*4*ch1; i++) {
              imgData.data[i] = fontView[i];
               }
-        ctx.putImageData(imgData,cx, cy);   
+        ctx.putImageData(imgData,cx1, cy1);   
     
      } 
 	
