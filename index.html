@@ -245,9 +245,11 @@ var cw=24; var ch=48; var oh=33;
 function keypad() {
 	
      clearInterval(cursor);
+     showCursor();
      writeChar();
    //  writeMessage();
      storeMessage();
+     incCursor();
      cursor = setInterval(writeCursor, 1000); 	
 	
    } // keypad
@@ -453,6 +455,22 @@ function writeCursor() {
         ctx.fillRect(cx-4, cy, 4, 48);
         }, 0500);
       }	 
+
+function showCursor() {
+        var cvs = document.getElementById("canvas");
+        var ctx = cvs.getContext('2d');
+        ctx.fillStyle = "blue";
+        ctx.fillRect(cx-4, cy, 4, 48);
+        }
+	
+function incCursor() {
+        var cvs = document.getElementById("canvas");
+        var ctx = cvs.getContext('2d');
+        ctx.fillStyle = "white";
+        ctx.fillRect(cx-4-28, cy, 4, 48);
+	ctx.fillStyle = "blue";
+        ctx.fillRect(cx-4, cy, 4, 48);
+        }
 	
 function clrCursor() {
         var cvs = document.getElementById("canvas");
