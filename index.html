@@ -558,7 +558,7 @@ function putChar() {
 	
 	putChar1();
 function putChar1() {
-        cx = 16; cy = 208; cp = 0x41-20;
+        var cx=16, cy=208, cp=0x41-20;
         var cnv = document.getElementById("canvas");
         var ctx = cnv.getContext('2d');
         var imgData = ctx.createImageData(32, 64);
