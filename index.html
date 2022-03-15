@@ -518,12 +518,13 @@ function writeChar() {
   } else if(keyH == 0x08) {       // back_space
      if (cpr==0) {
        } else if(keyP==0x0A) {
-	        var i=0; var j=0;
-	   for (let k=0; k<cpr; k++) {
+	         var j=0;
+	   for (let i=0; i<cpr; i++) {
                if (msgArr[k]==0x0A) {i=0; j++;}
+		   if (j>2) {i=0; j=0;}
 		   if (i>24) {i=0; j++;}
-		   if (j>2) {j=0;}
-		   i++;
+		   if (j>2) {i=0; j=0;}
+		   
 		 }
 	       cx=cxi+28*i; cy=cyi+48*j;
 	       
