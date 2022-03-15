@@ -656,7 +656,7 @@ function putChar1() {
         var fontView = new Uint8Array(fontBuf);
              
 	var cb = [0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01];
-	var fb; var k=0; // oh1=kHex-0x20;
+	var fb; var k=0; 
         for (let i=0; i<(cw1/8)*ch1; i++) { 
             for (let j=0; j<8; j++) {
                  fb = font2448[(cw1/8)*ch1*oh1+i] & cb[j]; 
