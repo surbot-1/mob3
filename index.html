@@ -240,9 +240,9 @@ var cursor; var ptr=0;
 var cls=0; var cla=0; var cpr=0;
 var keyChar; var kChar;
 var keyHex;  var kHex;
-var cxi=128+14;  var cxf=800-14;
+var cxi=124+14;  var cxf=796-14;
 var cyi=1440-24; var cyf=1488-24;
-var cx=128+14; var cy=1440-24; var cp;
+var cx=124+14; var cy=1440-24; var cp;
 var cxp; var cyp;  
 var cw=24; var ch=48; var oh=33;
 	
@@ -466,10 +466,10 @@ function writeCursor() {
         var ctx = cvs.getContext('2d');
 	
         ctx.fillStyle = "blue";
-        ctx.fillRect(cx-4, cy, 4, 48);
+        ctx.fillRect(cx, cy, 4, 48);
 	setTimeout( function() {
 	ctx.fillStyle = "white";
-        ctx.fillRect(cx-4, cy, 4, 48);
+        ctx.fillRect(cx, cy, 4, 48);
         }, 0500);
       }	 
 
@@ -477,16 +477,16 @@ function showCursor() {
         var cvs = document.getElementById("canvas");
         var ctx = cvs.getContext('2d');
         ctx.fillStyle = "blue";
-        ctx.fillRect(cx-4, cy, 4, 48);
+        ctx.fillRect(cx, cy, 4, 48);
         }
 	
 function updateCursor() {
         var cvs = document.getElementById("canvas");
         var ctx = cvs.getContext('2d');
         ctx.fillStyle = "white";
-        ctx.fillRect(cxp-4, cyp, 4, 48);
+        ctx.fillRect(cxp, cyp, 4, 48);
 	ctx.fillStyle = "blue";
-        ctx.fillRect(cx-4, cy, 4, 48);
+        ctx.fillRect(cx, cy, 4, 48);
         }
 	
 function clrCursor() {
@@ -494,7 +494,7 @@ function clrCursor() {
         var ctx = cvs.getContext('2d');
         clearInterval(cursor);
         ctx.fillStyle = "white";
-        ctx.fillRect(cx-4, cy, 4, 48);
+        ctx.fillRect(cx, cy, 4, 48);
         }
   
 	
@@ -518,7 +518,7 @@ function writeChar() {
      if (cpr==0) {
        } else {
         ctx.fillStyle = "white";
-        ctx.fillRect(cx-4, cy, 4, 48);
+        ctx.fillRect(cx, cy, 4, 48);
 	  cx-=28;
         if(cx<cxi) {cx=cxf; cy-=48;}
         if(cy<cyi) {cx=cxf; cy=cyf;}
@@ -529,21 +529,21 @@ function writeChar() {
   } else if(keyH == 0x12) {
   } else if(keyH == 0x20) {     // space
        ctx.fillStyle = "white";
-       ctx.fillRect(cx-4, cy, 28, 48);
+       ctx.fillRect(cx, cy, 28, 48);
 	   cx+=28;
        if(cx>cxf) {cx=cxi; cy+=48;}
        if(cy>cyf) {cx=cxi; cy=cyi;}
 	  
   } else if(keyH == 0x0A) {    // enter
        ctx.fillStyle = "white";
-       ctx.fillRect(cx-4, cy, 4, 48);
+       ctx.fillRect(cx, cy, 4, 48);
 	 cx=cxi; cy+=48;
        if(cy>cyf) {cx=cxi; cy=cyi;}
        
 	  
   } else {
        ctx.fillStyle = "white";
-       ctx.fillRect(cx-4, cy, 4, 48);
+       ctx.fillRect(cx, cy, 4, 48);
         oh = keyH-0x20;
         putChar();
         cx+=28;
@@ -587,7 +587,7 @@ function putChar() {
         for (let i=0; i<24*4*48; i++) {
              imgData.data[i] = fontView[i];
               }
-        ctx.putImageData(imgData,cx, cy);   
+        ctx.putImageData(imgData,cx+4, cy);   
     
      } 
     
@@ -597,23 +597,23 @@ function putChar() {
 	
 <script>
 	
-var cx1=416; var cy1=208; var cw1=24; var ch1=48;
+var cx1=412; var cy1=208; var cw1=24; var ch1=48;
 var oh1=33;
 function sendMessage() {
 
       var cnv = document.getElementById("canvas");
       var ctx = cnv.getContext('2d');
           ctx.fillStyle = "white";
-          ctx.fillRect(128+14, 1416, 800-128+28-14, 48*2);
+          ctx.fillRect(124+14, 1416, 800-128+28-14, 48*2);
           cx=cxi; cy=cyi;
           
          
     for (let i=0; i<cpr; i++) {
         kHex = msgArr[i];
 	if (kHex==0x0A) {
-             cx1=416; cy1+=64;
+             cx1=412; cy1+=64;
 	     if (cy1>1392-64) {
-	     cx1=416; cy1=208;
+	     cx1=412; cy1=208;
              ctx.fillStyle = "white";
              ctx.fillRect(0, 144, 1080, 1247);
              }
@@ -623,15 +623,15 @@ function sendMessage() {
 	    cx1+=28;
 	    if (cx1>1080-28) {cx1=416; cy1+=64;}
 	    if (cy1>1392-64) {
-	    cx1=416; cy1=208;
+	    cx1=412; cy1=208;
             ctx.fillStyle = "white";
             ctx.fillRect(0, 144, 1080, 1247);
              }
            }
          }
-           cx1=416; cy1+=64;
+           cx1=412; cy1+=64;
            if (cy1>1392-64) {
-               cx1=416; cy1=208;
+               cx1=412; cy1=208;
                ctx.fillStyle = "white";
                ctx.fillRect(0, 144, 1080, 1247);
                }
