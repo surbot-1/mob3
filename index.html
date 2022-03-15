@@ -228,12 +228,12 @@ var msgStr;
 var qwertyChar    = ["Q","W","E","R","T","Y","U","I","O","P",
 	               "A","S","D","F","G","H","J","K","L",
 	             "SI", "Z","X","C","V","B","N","M","BS",
-	            "DC1","DC2",",",   "SPACE",    ".","DC3"];
+	            "DC1","DC2",",",   "SPACE",    ".","\n"];
 
 var qwertyHex     = [0x51,0x57,0x45,0x52,0x54,0x59,0x55,0x49,0x4F,0x50,  // 0-9  QEERTYUIOP
 	               0x41,0x53,0x44,0x46,0x47,0x48,0x4A,0x4B,0x4C,     // 10-18 ASDFGHJKL
-	             0x0F, 0x5A,0x58,0x43,0x56,0x42,0x4E,0x4D, 0x08,    // 19-27 siZXCVBNMdel
-	             0x11, 0x12,0x2C,       0x20,        0x2E, 0x13];   // 28-33 dc1dc2,Space.dc
+	             0x0F, 0x5A,0x58,0x43,0x56,0x42,0x4E,0x4D, 0x08,    // 19-27 siZXCVBNMbs
+	             0x11, 0x12,0x2C,       0x20,        0x2E, 0x0A];   // 28-33 dc1dc2,Space.dc
 	
 var ci = 16; var cj = 208;
 var cursor; var ptr=0;
@@ -378,7 +378,7 @@ function writeMessage() {
        if(ci>1080-48) {ci=16; cj+=64;}
        if(cj>1392-64) {ci=16; cj=208;}
 	  
-  } else if(keyC == "DC3") {
+  } else if(keyC == "\n") {
        ctx.fillStyle = "white";
        ctx.fillRect(ci, cj-32, 4, 32);
 	  ci=16; cj+=64;
@@ -417,7 +417,7 @@ function storeMessageStr() {
                msgStr += " ";
                msgArr[cpr] = 0x20;
                cls++; cla++; cpr++;
-	} else if (keyC == "DC3") {    // enter - new_line
+	} else if (keyC == "\n") {    // enter - new_line
                msgStr += "\n";
                msgArr[cpr] = 0x0A;
                cls++; cla++; cpr++;
@@ -446,7 +446,7 @@ function storeMessageStr() {
                msgStr += " ";
                msgArr[cpr] = 0x20;
                cls++; cla++; cpr++;
-	} else if (keyH == 0x13) {    // enter
+	} else if (keyH == 0x0A) {    // enter
                msgStr += "\n";
                msgArr[cpr] = 0x0A;
                cls++; cla++; cpr++;
@@ -528,7 +528,7 @@ function writeChar() {
        if(cx>cxf) {cx=cxi; cy+=48;}
        if(cy>cyf) {cx=cxi; cy=cyi;}
 	  
-  } else if(keyH == 0x13) {    // enter
+  } else if(keyH == 0x0A) {    // enter
        ctx.fillStyle = "white";
        ctx.fillRect(cx-4, cy, 4, 48);
 	 cx=cxi; cy+=48;
