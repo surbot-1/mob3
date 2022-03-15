@@ -408,9 +408,12 @@ function storeMessageStr() {
         if (keyC == "SI") {           // shift_in
                 
 	} else if (keyC == "BS") {    // back_space
-               msgStr = "";
-               msgArr[cpr] = 0x00;
-               cls--; cla--; cpr--;
+               if (cpr==0) {
+              } else {
+		 msgStr = "";
+                 msgArr[cpr] = 0x00;
+                 cls--; cla--; cpr--;
+              }
         } else if (keyC == "DC1") {    // ?123
 	} else if (keyC == "DC2") {    // emoji
 	} else if (keyC == "SPACE") {  // space
@@ -512,13 +515,16 @@ function writeChar() {
 	var keyH = keyHex;
       if(keyH == 0x0F) {       // shift
   } else if(keyH == 0x08) {    // back_space
-       ctx.fillStyle = "white";
-       ctx.fillRect(cx-4, cy, 4, 48);
+     if (cpr==0) {
+       } else {
+        ctx.fillStyle = "white";
+        ctx.fillRect(cx-4, cy, 4, 48);
 	  cx-=28;
-       if(cx<cxi) {cx=cxf; cy-=48;}
-       if(cy<cyi) {cx=cxf; cy=cyf;}
-       ctx.fillStyle = "white";
-       ctx.fillRect(cx, cy, 24, 48);
+        if(cx<cxi) {cx=cxf; cy-=48;}
+        if(cy<cyi) {cx=cxf; cy=cyf;}
+        ctx.fillStyle = "white";
+        ctx.fillRect(cx, cy, 24, 48);
+       }
   } else if(keyH == 0x11) { 
   } else if(keyH == 0x12) {
   } else if(keyH == 0x20) {     // space
