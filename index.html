@@ -609,7 +609,7 @@ function sendMessage() {
           
          
     for (let i=0; i<cpr; i++) {
-        kHex = msgArr[i];
+        var kHex = msgArr[i];
 	if (kHex==0x0A) {
              cx1=412; cy1+=64;
 	     if (cy1>1392-64) {
