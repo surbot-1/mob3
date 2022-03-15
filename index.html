@@ -521,11 +521,11 @@ function writeChar() {
 	        var i=0; var j=0;
 	   for (let k=0; k<cpr; k++) {
                if (msgArr[k]==0x0A) {i=0; j++;}
-		   i++;
 		   if (i>24) {i=0; j++;}
-		   if (j>2) {i=0; j=0;}
-		   cx=cxi+28*i; cy=cyi+48*j;
-	        }
+		   if (j>2) {j=0;}
+		   i++;
+		 }
+	       cx=cxi+28*i; cy=cyi+48*j;
 	       
        } else {
         ctx.fillStyle = "white";
