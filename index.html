@@ -604,7 +604,7 @@ function sendMessage() {
       var cnv = document.getElementById("canvas");
       var ctx = cnv.getContext('2d');
           ctx.fillStyle = "white";
-          ctx.fillRect(124+14, 1416, 800-128+28-14, 48*2);
+          ctx.fillRect(124+14, 1416, 796-128+28-14, 48*2);
           cx=cxi; cy=cyi;
           
          
@@ -679,7 +679,7 @@ function putChar1() {
         for (let i=0; i<cw1*4*ch1; i++) {
              imgData.data[i] = fontView[i];
               }
-        ctx.putImageData(imgData,cx1, cy1);   
+        ctx.putImageData(imgData,cx1+4, cy1);   
     
      } 
 	
