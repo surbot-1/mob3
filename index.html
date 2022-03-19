@@ -623,6 +623,7 @@ var ds2ptr1 =0;
 function putMsgCnt() {
 	var ptr1 = msgCntPtr;
         ptr1 += 128*8;
+        if (ptr1>=128*32){ptr1==0;}
 	for(let i=0; i<32; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
 	}
@@ -647,12 +648,12 @@ function sendMessage() {
 	for (let i=0; i<8; i++) {
 		updateMessage();
 		ds2ptr1 +=128;
-                if (ds2ptr1 > 128*32) {
+                if (ds2ptr1 >= 128*32) {
 			ds2ptr1=0;
 		}
 	}
 	ptr1+=128;
-	if (ptr1>128*32){ptr1=0;}
+	if (ptr1>=128*32){ptr1=0;}
 	msgCntPtr = ptr1;
 }
 
@@ -666,7 +667,7 @@ function updateMessage() {
        
 	
         /* cx1=412; cy1+=64;
-	if (cy1>1392-64) {
+	if (cy1>=1392) {
                cx1=412; cy1=208;
                ctx.fillStyle = "white";
                ctx.fillRect(0, 144, 1080, 1247);
@@ -683,7 +684,7 @@ function updateMessage() {
         var kHex = msgCntArr[ds2ptr1+i];
 	if (kHex==0x0A) {
              cx1=cx1i; cy1+=64;
-	     if (cy1>cy1f) {
+	     if (cy1>=cy1f) {
 	     cx1=cx1i; cy1=cy1f;
              ctx.fillStyle = "white";
              ctx.fillRect(0, 144, 1080, 1247);
@@ -692,8 +693,8 @@ function updateMessage() {
             oh1=kHex-0x20;
 	    putChar1();
 	    cx1+=28;
-	    if (cx1>cx1f) {cx1=cx1i; cy1+=64;}
-	    if (cy1>cy1f) {
+	    if (cx1>=cx1f) {cx1=cx1i; cy1+=64;}
+	    if (cy1>=cy1f) {
 	    cx1=cx1i; cy1=cy1i;
             ctx.fillStyle = "white";
             ctx.fillRect(0, 144, 1080, 1247);
@@ -701,7 +702,7 @@ function updateMessage() {
            }
        }
            cx1=cx1i; cy1+=64;
-           if (cy1>cy1f) {
+           if (cy1>=cy1f) {
                cx1=cx1i; cy1=cy1i;
                ctx.fillStyle = "white";
                ctx.fillRect(0, 144, 1080, 1247);
