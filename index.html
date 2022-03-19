@@ -639,11 +639,12 @@ var cy1i=208; var cy1f=1248;
 
 function sendMessage() {
 	putMsgCnt();
+        cx1=cx1i; cy1=cy1i;
 	var ptr1 = msgCntPtr;
 	for (let i=0; i<8; i++) {
 		updateMessage();
 		ptr1+=128;
-                cx1=0; cy1+=64*2;
+                // cx1=0; cy1+=64*2;
 	}
 }
 	
