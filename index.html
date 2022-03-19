@@ -641,7 +641,7 @@ function sendMessage() {
 	putMsgCnt();
         cx1=cx1i; cy1=cy1i;
 	var ptr1 = msgCntPtr;
-	ds2ptr1 = msgCntPtr;
+	ds2ptr1 = msgCntPtr-128*8;
 	for (let i=0; i<8; i++) {
 		updateMessage();
 		ds2ptr1 +=128;
