@@ -621,13 +621,12 @@ var msgCntPtr = 0;
 
 function putMsgCnt() {
 	var ptr = msgCntPtr;
-	for(let i=0; i<128; i++) {
+	for(let i=0; i<cpr; i++) {
 		msgCntArr[ptr+i] = msgArr[i];
 	}
-	msgCntPtr+=128;
-	if (msgCntPtr>128*32) {
-		msgCntPtr = 0;
-	}
+	ptr-=cpr;
+	if (ptr>128*32) {ptr = 0;}
+	msgCntPtr = ptr;
 }
 	
 </script>
@@ -648,13 +647,7 @@ function sendMessage() {
           cx=cxi; cy=cyi;
 	
        putMsgCnt();
-       var ptr = msgCntPtr;
-       if (ptr==0){
-	       ptr=128*32;
-               ptr-=128;
-       } else {
-               ptr -=128;
-       }
+       var ptr1 = msgCntPtr;
 
         /* cx1=412; cy1+=64;
 	if (cy1>1392-64) {
@@ -670,8 +663,8 @@ function sendMessage() {
         ctx.stroke(); */
           
          
-    for (let i=0; i<128; i++) {
-        var kHex = msgCntArr[ptr+i];
+    for (let i=0; i<cpr; i++) {
+        var kHex = msgCntArr[ptr1+i];
 	if (kHex==0x0A) {
              cx1=cx1i; cy1+=64;
 	     if (cy1>cy1f) {
@@ -690,7 +683,7 @@ function sendMessage() {
             ctx.fillRect(0, 144, 1080, 1247);
              }
            }
-         }
+       }
            cx1=cx1i; cy1+=64;
            if (cy1>cy1f) {
                cx1=cx1i; cy1=cy1i;
@@ -698,10 +691,10 @@ function sendMessage() {
                ctx.fillRect(0, 144, 1080, 1247);
                } 
            cls=0; cla=0; cpr=0;
-           ptr+=128;
-           if (ptr>128*32){ptr=0;}
-           msgCntPtr=ptr;
-    }
+           ptr1+=128;
+           if (ptr1>128*32){ptr1=0;}
+           msgCntPtr = ptr1;
+  }
 		
 </script>
 
@@ -739,10 +732,10 @@ function putChar1() {
 		  
               }
           }
-	for (let i=0; i<cw2*4*ch2; i++) {
+	for (let i=0; i<cw1*4*ch1; i++) {
              imgData.data[i] = fontView[i];
               }
-        ctx.putImageData(imgData,cx2+4, cy2);   
+        ctx.putImageData(imgData,cx1+4, cy1);   
     
      } 
 	
