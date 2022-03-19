@@ -612,6 +612,26 @@ function putChar() {
 	
 	
 <script>
+
+var msgCntBuf = new ArrayBuffer(128*32); // 80*16
+var msgCntView = new Uint8Array(msgCntBuf);
+var msgCntPtr = 0;
+
+function putMsgCnt() {
+	var ptr = msgCntPtr;
+	for(let i=0; i<128; i++) {
+		msgCntView[ptr+i] = msgArr[i];
+	}
+	msgCntPtr+=128;
+	if (msgCntPtr>128*32) {
+		msgCntPtr = 0;
+	}
+}
+	
+</script>
+	
+	
+<script>
 	
 var cx1=412; var cy1=208; var cw1=24; var ch1=48;
 var oh1=33;
@@ -716,9 +736,13 @@ function putChar1() {
 	
 	
 <script>
+
+
+
+</script>
 	
 	
-	
+<script>
 	
 	
        // displayChar1();
