@@ -624,7 +624,7 @@ function putMsgCnt() {
 	var ptr1 = msgCntPtr;
         ptr1 += 128*8;
         if (ptr1>=128*32){ptr1==0;}
-	for(let i=0; i<32; i++) {
+	for(let i=0; i<48; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
 	}
 }
@@ -680,7 +680,7 @@ function updateMessage() {
         ctx.stroke(); */
           
          
-    for (let i=0; i<32; i++) {
+    for (let i=0; i<48; i++) {
         var kHex = msgCntArr[ds2ptr1+i];
 	if (kHex==0x0A) {
              cx1=cx1i; cy1+=64;
