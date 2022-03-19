@@ -615,12 +615,13 @@ function putChar() {
 
 var msgCntBuf = new ArrayBuffer(128*32); // 80*16
 var msgCntView = new Uint8Array(msgCntBuf);
+var msgCntArr = new Uint8Array(msgCntBuf);
 var msgCntPtr = 0;
 
 function putMsgCnt() {
 	var ptr = msgCntPtr;
 	for(let i=0; i<128; i++) {
-		msgCntView[ptr+i] = msgArr[i];
+		msgCntArr[ptr+i] = msgArr[i];
 	}
 	msgCntPtr+=128;
 	if (msgCntPtr>128*32) {
@@ -637,8 +638,8 @@ var cx1=412; var cy1=208; var cw1=24; var ch1=48;
 var oh1=33;
 function sendMessage() {
 
-      var cnv = document.getElementById("canvas");
-      var ctx = cnv.getContext('2d');
+       var cnv = document.getElementById("canvas");
+       var ctx = cnv.getContext('2d');
           ctx.fillStyle = "white";
           ctx.fillRect(124+14, 1416, 796-128+28-14, 48*2);
           cx=cxi; cy=cyi;
