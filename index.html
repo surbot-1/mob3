@@ -251,9 +251,10 @@ function keypad() {
      clearInterval(cursor);
      showCursor();
      writeChar();
-     // writeMessage();
+     // writeMessage1();
      storeMessageStr();
     // storeMessageArr();
+     // putMsgCnt();
      updateCursor();
      cursor = setInterval(writeCursor, 1000); 	
 	
@@ -630,20 +631,30 @@ function putMsgCnt() {
 }
 	
 </script>
-	
+
 	
 <script>
 	
 var cx1=412; var cy1=208; var cw1=24; var ch1=48;
 var oh1=33;
+var cx1i=412; var cx1f=1080;
+var cy1i=208; var cy1f=1248;
 function sendMessage() {
 
        var cnv = document.getElementById("canvas");
        var ctx = cnv.getContext('2d');
           ctx.fillStyle = "white";
           ctx.fillRect(124+14, 1416, 796-128+28-14, 48*2);
-          cx=cxi; cy=cyi;
-	
+       
+       putMsgCnt();
+       var ptr = msgCntPtr;
+       if (ptr==0){
+	       ptr=128*32;
+               ptr-=128;
+       } else {
+               ptr -=128;
+       }
+
         /* cx1=412; cy1+=64;
 	if (cy1>1392-64) {
                cx1=412; cy1=208;
@@ -658,12 +669,12 @@ function sendMessage() {
         ctx.stroke(); */
           
          
-    for (let i=0; i<cpr; i++) {
-        var kHex = msgArr[i];
+    for (let i=0; i<128; i++) {
+        var kHex = msgCntArr[ptr+i];
 	if (kHex==0x0A) {
-             cx1=412; cy1+=64;
-	     if (cy1>1392-64) {
-	     cx1=412; cy1=208;
+             cx1=cx1i; cy1+=64;
+	     if (cy1>cy1f) {
+	     cx1=cx1i; cy1=cy1f;
              ctx.fillStyle = "white";
              ctx.fillRect(0, 144, 1080, 1247);
              }
@@ -671,27 +682,28 @@ function sendMessage() {
             oh1=kHex-0x20;
 	    putChar1();
 	    cx1+=28;
-	    if (cx1>1080-28) {cx1=416; cy1+=64;}
-	    if (cy1>1392-64) {
-	    cx1=412; cy1=208;
+	    if (cx1>cx1i) {cx1=cx1i; cy1+=64;}
+	    if (cy1>cy1f) {
+	    cx1=cx1i; cy1=cy1i;
             ctx.fillStyle = "white";
             ctx.fillRect(0, 144, 1080, 1247);
              }
            }
          }
-           cx1=412; cy1+=64;
-           if (cy1>1392-64) {
-               cx1=412; cy1=208;
+           cx1=cx1i; cy1+=64;
+           if (cy1>cy1f) {
+               cx1=cx1i; cy1=cy1i;
                ctx.fillStyle = "white";
                ctx.fillRect(0, 144, 1080, 1247);
                } 
-       
            cls=0; cla=0; cpr=0;
+           ptr+=128;
+           if (ptr>128*32){ptr=0;}
+           msgCntPtr=ptr;
     }
 		
 </script>
 
-	
 <script>
 	
 	putChar1();
@@ -726,10 +738,120 @@ function putChar1() {
 		  
               }
           }
-        for (let i=0; i<cw1*4*ch1; i++) {
+	for (let i=0; i<cw2*4*ch2; i++) {
              imgData.data[i] = fontView[i];
               }
-        ctx.putImageData(imgData,cx1+4, cy1);   
+        ctx.putImageData(imgData,cx2+4, cy2);   
+    
+     } 
+	
+</script>
+	
+	
+<script>
+	
+var cx2=412; var cy2=208; var cw2=24; var ch2=48;
+var oh2=33;
+function sendMessage2() {
+
+       var cnv = document.getElementById("canvas");
+       var ctx = cnv.getContext('2d');
+          ctx.fillStyle = "white";
+          ctx.fillRect(124+14, 1416, 796-128+28-14, 48*2);
+          cx=cxi; cy=cyi;
+	
+        /* cx1=412; cy1+=64;
+	if (cy1>1392-64) {
+               cx1=412; cy1=208;
+               ctx.fillStyle = "white";
+               ctx.fillRect(0, 144, 1080, 1247);
+               } */
+	
+        /* ctx.beginPath();
+        ctx.lineWidth = "4";
+        ctx.strokeStyle = "blue";
+        ctx.rect(0, 208, 640, 160);
+        ctx.stroke(); */
+          
+         
+    for (let i=0; i<cpr; i++) {
+        var kHex = msgArr[i];
+	if (kHex==0x0A) {
+             cx2=412; cy2+=64;
+	     if (cy2>1392-64) {
+	     cx2=412; cy2=208;
+             ctx.fillStyle = "white";
+             ctx.fillRect(0, 144, 1080, 1247);
+             }
+         } else {
+            oh2=kHex-0x20;
+	    putChar2();
+	    cx2+=28;
+	    if (cx2>1080-28) {cx2=416; cy2+=64;}
+	    if (cy2>1392-64) {
+	    cx2=412; cy2=208;
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 144, 1080, 1247);
+             }
+           }
+         }
+           cx2=412; cy2+=64;
+           if (cy2>1392-64) {
+               cx2=412; cy2=208;
+               ctx.fillStyle = "white";
+               ctx.fillRect(0, 144, 1080, 1247);
+               } 
+       
+           cls=0; cla=0; cpr=0;
+    }
+    for (let i=0; i<cw2*4*ch2; i++) {
+             imgData.data[i] = fontView[i];
+              }
+        ctx.putImageData(imgData,cx2+4, cy2);   
+    
+ } 
+	
+</script>
+	
+	
+<script>
+	
+// putChar2();
+function putChar2() {
+        // var cx=16; var cy=208; var cw=32; var ch=64;
+        // var oh=kHex-0x20;
+        var cnv = document.getElementById("canvas");
+        var ctx = cnv.getContext('2d');
+        var imgData = ctx.createImageData(cw2, ch2);
+        
+        var fontBuf = new ArrayBuffer(cw2*4*ch2);
+        var fontView = new Uint8Array(fontBuf);
+             
+	var cb = new Uint8Array ([0x80,0x40,0x20,0x10,0x08,0x04,0x02,0x01]);
+	var fb; var k=0; 
+        for (let i=0; i<(cw2/8)*ch2; i++) { 
+            for (let j=0; j<8; j++) {
+                 fb = font2448[(cw2/8)*ch2*oh2+i] & cb[j]; 
+                 if (fb) {
+		   fontView[k+0] = 0x00;
+                   fontView[k+1] = 0x00;
+		   fontView[k+2] = 0x00;
+		   fontView[k+3] = 0xFF;
+		    k+=4; 
+                   } else {
+		   fontView[k+0] = 0xFF; 
+		   fontView[k+1] = 0xFF;
+		   fontView[k+2] = 0xFF;
+		   fontView[k+3] = 0xFF;
+		    k+=4; 
+                   }
+		  
+              }
+          }
+        for (let i=0; i<cw2*4*ch2; i++) {
+             imgData.data[i] = fontView[i];
+              }
+        ctx.putImageData(imgData,cx2+4, cy2);   
     
      } 
 	
