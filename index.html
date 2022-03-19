@@ -621,7 +621,6 @@ var msgCntPtr = 0;
 
 function putMsgCnt() {
 	var ptr1 = msgCntPtr;
-           // ptr1 += 8*128;
 	for(let i=0; i<cpr; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
 	}
@@ -701,9 +700,6 @@ function updateMessage() {
                ctx.fillRect(0, 144, 1080, 1247);
                } 
            cls=0; cla=0; cpr=0;
-           ptr1+=128;
-           if (ptr1>128*32){ptr1=0;}
-           msgCntPtr = ptr1;
   }
 		
 </script>
