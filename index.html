@@ -638,11 +638,11 @@ var cy1i=208; var cy1f=1248;
 
 function sendMessage() {
 	putMsgCnt();
-        cx1=cx1i; cy1=cy1i;
+        // cx1=cx1i; cy1=cy1i;
 	var ptr1 = msgCntPtr;
 	for (let i=0; i<8; i++) {
 		updateMessage();
-		ptr1+=128;
+                // ptr1+=128;
                 // cx1=0; cy1+=64*2;
 	}
 }
@@ -700,6 +700,9 @@ function updateMessage() {
                ctx.fillRect(0, 144, 1080, 1247);
                } 
            cls=0; cla=0; cpr=0;
+           ptr1+=128;
+           if (ptr1>128*32){ptr1=0;}
+           msgCntPtr = ptr1;
   }
 		
 </script>
