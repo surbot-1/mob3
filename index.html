@@ -620,9 +620,10 @@ var msgCntArr = new Uint8Array(msgCntBuf);
 var msgCntPtr = 0;
 
 function putMsgCnt() {
-	var j = msgCntPtr;
+	var ptr1 = msgCntPtr;
+            ptr1 += 8*128;
 	for(let i=0; i<cpr; i++) {
-		msgCntArr[j+i] = msgArr[i];
+		msgCntArr[ptr1+i] = msgArr[i];
 	}
 }
 	
@@ -635,7 +636,18 @@ var cx1=412; var cy1=208; var cw1=24; var ch1=48;
 var oh1=33;
 var cx1i=412; var cx1f=1080;
 var cy1i=208; var cy1f=1248;
+
 function sendMessage() {
+	putMsgCnt();
+	var ptr1 = msgCntPtr;
+	for (let i=0; i<8; i++) {
+		updateMessage();
+		ptr1+=128;
+                cx1=0; cy1+=64*2;
+	}
+}
+	
+function updateMessage() {
 
        var cnv = document.getElementById("canvas");
        var ctx = cnv.getContext('2d');
@@ -643,9 +655,9 @@ function sendMessage() {
           ctx.fillRect(124+14, 1416, 796-128+28-14, 48*2);
           cx=cxi; cy=cyi;
 	
-       putMsgCnt();
+       
        var ptr1 = msgCntPtr;
-
+       
         /* cx1=412; cy1+=64;
 	if (cy1>1392-64) {
                cx1=412; cy1=208;
