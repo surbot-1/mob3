@@ -620,13 +620,13 @@ var msgCntArr = new Uint8Array(msgCntBuf);
 var msgCntPtr = 0;
 
 function putMsgCnt() {
-	var ptr = msgCntPtr;
+	var ptr1 = msgCntPtr;
 	for(let i=0; i<cpr; i++) {
 		msgCntArr[ptr+i] = msgArr[i];
 	}
-	ptr-=cpr;
-	if (ptr>128*32) {ptr = 0;}
-	msgCntPtr = ptr;
+	ptr-=cpr1;
+	if (ptr>128*32) {ptr1 = 0;}
+	msgCntPtr = ptr1;
 }
 	
 </script>
