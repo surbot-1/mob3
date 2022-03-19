@@ -622,7 +622,8 @@ var ds2ptr1 =0;
 
 function putMsgCnt() {
 	var ptr1 = msgCntPtr;
-	for(let i=0; i<cpr; i++) {
+        ptr1 += 128*8;
+	for(let i=0; i<32; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
 	}
 }
@@ -636,14 +637,13 @@ var cx1=412; var cy1=208; var cw1=24; var ch1=48;
 var oh1=33;
 var cx1i=412; var cx1f=1080;
 var cy1i=208; var cy1f=1248;
-
+	
 function sendMessage() {
 	putMsgCnt();
         cx1=cx1i; cy1=cy1i;
 	var ptr1 = msgCntPtr;
 	ds2ptr1 = msgCntPtr;
-        if (ds2ptr1==0){ds2ptr1=128*32}
-	ds2ptr1 -= (128*8);
+	
 	for (let i=0; i<8; i++) {
 		updateMessage();
 		ds2ptr1 +=128;
@@ -679,7 +679,7 @@ function updateMessage() {
         ctx.stroke(); */
           
          
-    for (let i=0; i<cpr; i++) {
+    for (let i=0; i<32; i++) {
         var kHex = msgCntArr[ds2ptr1+i];
 	if (kHex==0x0A) {
              cx1=cx1i; cy1+=64;
