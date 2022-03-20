@@ -624,7 +624,7 @@ function putMsgCnt() {
 	var ptr1 = msgCntPtr;
         ptr1 = msgCntPtr+128*5;
         if (ptr1>=128*32){ptr1==0;}
-	for(let i=0; i<48; i++) {
+	for(let i=0; i<cpr; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
 	}
 }
