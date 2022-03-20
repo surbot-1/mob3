@@ -662,7 +662,7 @@ function sendMessage() {
 		ds2ptr1f = ptr1;
                 var j=((ds2ptr1f-ds2ptr1i)/128)+1;
                 for (let i=0; i<j; i++) {
-                       var msize=msgCntPtr[ds2ptr1i+i];
+                       var msize=msgCntPtr[ds2ptr1i+127];
 			for (i=0: i<msize; i++) {
                                 var k=msize;
 				for (k>=24) {
