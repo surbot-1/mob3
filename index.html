@@ -618,7 +618,8 @@ var msgCntBuf = new ArrayBuffer(128*32); // 80*16
 var msgCntView = new Uint8Array(msgCntBuf);
 var msgCntArr = new Uint8Array(msgCntBuf);
 var msgCntPtr = 0;
-var ds2ptr1 =0;
+var ds2ptr1 = 0;
+var msgSize = 0;
 
 function putMsgCnt() {
 	var ptr1 = msgCntPtr;
@@ -627,6 +628,7 @@ function putMsgCnt() {
 	for(let i=0; i<cpr; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
 	}
+        msgCntArr[ptr1+127] = cpr; // message size
 }
 	
 </script>
@@ -667,21 +669,9 @@ function sendMessage() {
 
 function updateMessage() {
 	
-        /* cx1=412; cy1+=64;
-	if (cy1>=1392) {
-               cx1=412; cy1=208;
-               ctx.fillStyle = "white";
-               ctx.fillRect(0, 144, 1080, 1247);
-               } */
-	
-        /* ctx.beginPath();
-        ctx.lineWidth = "4";
-        ctx.strokeStyle = "blue";
-        ctx.rect(0, 208, 640, 160);
-        ctx.stroke(); */
-          
+         var msize = msgCntArr[ds2ptr1+127];
          
-    for (let i=0; i<48; i++) {
+    for (let i=0; i<msize; i++) {
         var kHex = msgCntArr[ds2ptr1+i];
 	if (kHex==0x0A) {
              cx1=cx1i; cy1+=64;
