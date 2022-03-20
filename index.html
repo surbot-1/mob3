@@ -795,7 +795,7 @@ function putChar1() {
 	
 	
 <script>
-alert('1'); 
+alert('1'); /*
 function replyChatbot() {
 	var rplbot= new Uint8Array([0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20]);
 	var msgbot= new Uint8Array([0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20]);
@@ -841,17 +841,17 @@ function replyChatbot() {
 		sendMessage();
 		chatbot=false;
 	}
-} 
+} */
 	
 </script>
 	
 	
 <script>
 	
-alert('1'); /*
+alert('1'); 
 function replyChatbot() {
-	var rplbot= new Uint8Array([0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20]);
-	var msgbot= new Uint8Array([0x20,0x20,0x20,0x20,0x20,0x20,0x20,0x20]);
+	var rplbot= new Uint8Array(128);
+	var msgbot= new Uint8Array(128);
 	var ptr = msgCntPtr-128*1;
 	var minfo = msgCntArr[ptr+126];
 	var msize = msgCntArr[ptr+127];
@@ -861,16 +861,18 @@ function replyChatbot() {
 	}
 	ptr = ptr+128*1;
 	var b=true;
-	var mchek = [0x48,0x4F,0x57];
-        for(let i=0; i<msize; i++) {
-               if (msgbot[i]==mchek[i]) {
+	var mchek = [0x48,0x4F,0x57,0x20,0x41,0x52,0x45,0x20,0x59,0x4F,0x55];
+       for(let i=0; i<10; i++) {
+	for(let j=0; j<msize; j++) {
+               if (msgbot[j]==mchek[j]) {
 		       b=true;
 	       } else {
 		       b=false;
 		       break;
 	       }
+            }
 	}
-	if (b) {
+	if (b&&msize==[0x0B]) {
 		rplbot= [0x46,0x49,0x4E,0x45,0x2E,0x20,0x59,0x4F,0x55,0x3F];   // FINE. YOU?
 		for (let i=0; i<10; i++) {
 			msgCntArr[ptr+i] = rplbot[i];
@@ -893,7 +895,7 @@ function replyChatbot() {
 		chatbot=true;
 		sendMessage();
 		chatbot=false;
-	} */
+	} 
 		
 	/*if (msgbot[0]==[0x48]&&msgbot[1]==[0x49]&&msize==[0x02]) {   // HI
 		rplbot= [0x48,0x45,0x4C,0x4C,0x4F,0x20,0x20,0x20];   // HELLO
