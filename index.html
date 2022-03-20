@@ -696,8 +696,7 @@ function updateMessage() {
 	if (minfo==0x00) {  // this device
 		cx1i=408; cx1f=1080;
 		cy1i=208; cy1f=1248;
-	}
-	if (minfo==0x01) {  // chatbot
+	} else if (minfo==0x01) {  // chatbot
 		cx1i=408-408; cx1f=1080-408;
 		cy1i=208; cy1f=1248;
 	}
