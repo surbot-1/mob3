@@ -613,6 +613,7 @@ function putChar() {
 	
 	
 <script>
+alert('1');
 
 var msgCntBuf = new ArrayBuffer(128*32); // 80*16
 var msgCntView = new Uint8Array(msgCntBuf);
@@ -622,6 +623,12 @@ var ds2ptr1 = 0;
 var msgSize = 0;
 var ds2ptr1i=0; var ds2ptr1f=0;
 var chatbot=false;
+	
+
+var cx1=408; var cy1=208; var cw1=24; var ch1=48;
+var oh1=33;
+var cx1i=408; var cx1f=1080;
+var cy1i=208; var cy1f=1248;
 
 function putMsgCnt() {
 	var ptr1 = msgCntPtr;
@@ -640,12 +647,7 @@ function putMsgCnt() {
 
 	
 <script>
-alert('1');
-var cx1=408; var cy1=208; var cw1=24; var ch1=48;
-var oh1=33;
-var cx1i=408; var cx1f=1080;
-var cy1i=208; var cy1f=1248;
-	
+
 function message() {
 	sendMessage();
 	replyChatbot();
@@ -666,6 +668,7 @@ function sendMessage() {
 	ctx.fillStyle = "white";
         ctx.fillRect(0, 144, 1080, 1248);
         cx1=cx1i; cy1=cy1i;
+	
 	var ptr1 = msgCntPtr;
 	
         if (ptr1<128*8){
@@ -802,9 +805,9 @@ function replyChatbot() {
 		}
 		msgCntArr[ptr+126] = 0x01; // chatbot
 		msgCntArr[ptr+127] = 0x08;
-		chatbot=true;
 		cx1i=408-408; cx1f=1080-408;
 		cy1i=208; cy1f=1248;
+		chatbot=true;
 		sendMessage();
 		chatbot=false;
 	} else {
@@ -817,6 +820,8 @@ function replyChatbot() {
 		}
 		msgCntArr[ptr+126] = 0x01; // chatbot
 		msgCntArr[ptr+127] = 0x19;
+		cx1i=408-408; cx1f=1080-408;
+		cy1i=208; cy1f=1248;
 		chatbot=true;
 		sendMessage();
 		chatbot=false;
