@@ -663,11 +663,11 @@ function sendMessage() {
                 var j=((ds2ptr1f-ds2ptr1i)/128)+1;
                 for (let i=0; i<j; i++) {
                        var msize=msgCntPtr[ds2ptr1i+127];
-			for (i=0; i<msize; i++) {
-                                var k=msize;
+			for (let k=0; k<msize; k++) {
+                                var l=msize;
 				for (k>=24) {
 					mtsize++;
-					k-=24;
+					l-=24;
                                 }
 			}
 		}
