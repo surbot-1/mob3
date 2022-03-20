@@ -795,9 +795,36 @@ function replyOfJanu() {
 			msgCntArr[ptr+126] = 0x01; // receiver
 			msgCntArr[ptr+127] = 0x08;
 		}
-		sendMessage();
-		// ptr = ptr+128*1;
-		// msgCntPtr = ptr;
+		var cnv = document.getElementById("canvas");
+                var ctx = cnv.getContext('2d');
+                ctx.fillStyle = "white";
+                ctx.fillRect(124+14, 1416, 796-128+28-14, 48*2);
+                cx=cxi; cy=cyi;
+	
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 144, 1080, 1248);
+        cx1=cx1i; cy1=cy1i;
+	var ptr1 = msgCntPtr;
+	
+        if (ptr1<128*8){
+		ds2ptr1i = 0;
+		ds2ptr1f = ptr1;
+	} else {
+		ds2ptr1i = ptr1-128*8;
+		ds2ptr1f = ptr1;
+	}
+        var j=((ds2ptr1f-ds2ptr1i)/128)+1;
+	for (let i=0; i<j; i++) {
+		updateMessage();
+		ds2ptr1i +=128;
+                if (ds2ptr1i >= 128*32) {
+			ds2ptr1i=0;
+		}
+	}
+	ptr1+=128;
+	if (ptr1>=128*32){ptr1=0;}
+	msgCntPtr = ptr1;	
+	updateMessage();
 	}
 }
 	
