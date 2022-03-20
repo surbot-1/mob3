@@ -620,10 +620,11 @@ var msgCntArr = new Uint8Array(msgCntBuf);
 var msgCntPtr = 0;
 var ds2ptr1 = 0;
 var msgSize = 0;
+var ds2ptr1i=0; var ds2ptr1f=0;
 
 function putMsgCnt() {
 	var ptr1 = msgCntPtr;
-        ptr1 +=128*7;
+        ptr1 +=0;
         if (ptr1>=128*32){ptr1==0;}
 	for(let i=0; i<cpr; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
@@ -653,13 +654,21 @@ function sendMessage() {
         ctx.fillRect(0, 144, 1080, 1248);
         cx1=cx1i; cy1=cy1i;
 	var ptr1 = msgCntPtr;
-	ds2ptr1 = msgCntPtr;
+        
+	
+        if (ptr1<128*8){
+		ds2ptr1i = 0;
+		ds2ptr1f = ptr1;
+	} else {
+		ds2ptr1i = ptr1-128*8;
+		ds2ptr1f = ptr1;
+	}
 	
 	for (let i=0; i<8; i++) {
 		updateMessage();
-		ds2ptr1 +=128;
-                if (ds2ptr1 >= 128*32) {
-			ds2ptr1=0;
+		ds2ptr1i +=128;
+                if (ds2ptr1i >= 128*32) {
+			ds2ptr1i=0;
 		}
 	}
 	ptr1+=128;
@@ -669,10 +678,10 @@ function sendMessage() {
 
 function updateMessage() {
 	
-         var msize = msgCntArr[ds2ptr1+127];
+         var msize = msgCntArr[ds2ptr1i+127];
          
     for (let i=0; i<msize; i++) {
-        var kHex = msgCntArr[ds2ptr1+i];
+        var kHex = msgCntArr[ds2ptr1i+i];
 	if (kHex==0x0A) {
              cx1=cx1i; cy1+=64;
 	     if (cy1>=cy1f) {
