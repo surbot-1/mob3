@@ -663,7 +663,7 @@ function sendMessage() {
 		ds2ptr1i = ptr1-128*8;
 		ds2ptr1f = ptr1;
 	}
-        var j=(ds2ptr1f-ds2ptr1i)/128;
+        var j=((ds2ptr1f-ds2ptr1i)/128)+1;
 	for (let i=0; i<j; i++) {
 		updateMessage();
 		ds2ptr1i +=128;
