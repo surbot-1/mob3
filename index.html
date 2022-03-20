@@ -653,12 +653,8 @@ function message() {
 	
 function sendMessage() {
 	if (chatbot) {
-        cx1i=408-400; cx1f=1080-400;
-	cy1i=208; cy1f=1248;
 	} else {
 	putMsgCnt();
-	cx1i=408; cx1f=1080;
-	cy1i=208; cy1f=1248;
 	}
 	var cnv = document.getElementById("canvas");
         var ctx = cnv.getContext('2d');
@@ -698,7 +694,7 @@ function updateMessage() {
 	var msize = msgCntArr[ds2ptr1i+127];
 	
         if (minfo==0x00) {  // this device
-		cx1i=600; cx1f=1080;
+		cx1i=632; cx1f=1080;
                 cy1i=208; cy1f=1248;
                 cx1=cx1i;
 		chatbot=false;
