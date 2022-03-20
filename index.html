@@ -864,9 +864,10 @@ function replyChatbot() {
 	var mchek = [0x48,0x4F,0x57,0x20,0x41,0x52,0x45,0x20,0x59,0x4F,0x55];
         for(let i=0; i<msize; i++) {
                if (msgbot[i]==mchek[i]) {
-		       b=b&true;
+		       b=true;
 	       } else {
-		       b=b&false;
+		       b=false;
+		       break;
 	       }
 	}
 	if (b) {
