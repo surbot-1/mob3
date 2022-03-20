@@ -175,7 +175,7 @@ document.getElementById("divCanv").appendChild(canvs);
        } else if (x>128 && x<800 && y>1392 && y<1536) { // type_field
        } else if (x>800 && x<932 && y>1392 && y<1536) { // attachment
        } else if (x>932 && x<1080 && y>1392 && y<1536) { // send
-	       sendMessage();
+	       message();
        } else if (x>0 && x<1080 && y>1536 && y<2176) {  // keypad
 	       keypad(); 
        }
@@ -621,6 +621,7 @@ var msgCntPtr = 0;
 var ds2ptr1 = 0;
 var msgSize = 0;
 var ds2ptr1i=0; var ds2ptr1f=0;
+var chatbot=false;
 
 function putMsgCnt() {
 	var ptr1 = msgCntPtr;
@@ -643,8 +644,17 @@ var oh1=33;
 var cx1i=408; var cx1f=1080;
 var cy1i=208; var cy1f=1248;
 	
+function message() {
+	sendMessage();
+	replyChatbot();
+}
+	
 function sendMessage() {
+	if (chatbot) {
+        // putMsgChatbot();
+	} else {
 	putMsgCnt();
+	}
 	var cnv = document.getElementById("canvas");
         var ctx = cnv.getContext('2d');
           ctx.fillStyle = "white";
@@ -776,55 +786,28 @@ function putChar1() {
 	
 <script>
 	
-function replyJanu() {
-	var rpljanu= new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]);
-	var msgjanu= new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]);
+function replyChatbot() {
+	var rplbot= new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]);
+	var msgbot= new Uint8Array([0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]);
 	var ptr = msgCntPtr-128*1;
 	var minfo = msgCntArr[ptr+126];
 	var msize = msgCntArr[ptr+127];
 	
 	for(let i=0; i<msize; i++) {
-		msgjanu[i] = msgCntArr[ptr+i];
+		msgbot[i] = msgCntArr[ptr+i];
 	}
 	
-	if (msgjanu==[0x41,0x69,0x00,0x00,0x00,0x00,0x00,0x00]) {       // Hi
-		rpljanu= [0x48,0x65,0x6C,0x6C,0x6F,0x00,0x00,0x00];     // Hello
+	if (msgbot==[0x41,0x69,0x00,0x00,0x00,0x00,0x00,0x00]) {       // Hi
+		rplbot= [0x48,0x65,0x6C,0x6C,0x6F,0x00,0x00,0x00];     // Hello
 		for(let i=0; i<8; i++) {
-			msgCntArr[i] = msgjanu[i];
+			msgCntArr[i] = msgbot[i];
 			ptr = ptr+128*1;
-			msgCntArr[ptr+126] = 0x01; // receiver
+			msgCntArr[ptr+126] = 0x01; // chatbot
 			msgCntArr[ptr+127] = 0x08;
 		}
-		var cnv = document.getElementById("canvas");
-                var ctx = cnv.getContext('2d');
-                ctx.fillStyle = "white";
-                ctx.fillRect(124+14, 1416, 796-128+28-14, 48*2);
-                cx=cxi; cy=cyi;
-	
-        ctx.fillStyle = "white";
-        ctx.fillRect(0, 144, 1080, 1248);
-        cx1=cx1i; cy1=cy1i;
-	var ptr1 = msgCntPtr;
-	
-        if (ptr1<128*8){
-		ds2ptr1i = 0;
-		ds2ptr1f = ptr1;
-	} else {
-		ds2ptr1i = ptr1-128*8;
-		ds2ptr1f = ptr1;
-	}
-        var j=((ds2ptr1f-ds2ptr1i)/128)+1;
-	for (let i=0; i<j; i++) {
-		updateMessage();
-		ds2ptr1i +=128;
-                if (ds2ptr1i >= 128*32) {
-			ds2ptr1i=0;
-		}
-	}
-	ptr1+=128;
-	if (ptr1>=128*32){ptr1=0;}
-	msgCntPtr = ptr1;	
-	updateMessage();
+		chatbot=true;
+		sendMessage();
+		chatbot=false;
 	}
 }
 	
