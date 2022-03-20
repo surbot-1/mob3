@@ -799,7 +799,7 @@ function replyChatbot() {
 	if (msgbot==[0x48,0x49,0x00,0x00,0x00,0x00,0x00,0x00]) {       // HI
 		rplbot= [0x48,0x45,0x4C,0x4C,0x4F,0x00,0x00,0x00];     // HELLO
 		for(let i=0; i<8; i++) {
-			msgCntArr[ptr+i] = msgbot[i];
+			msgCntArr[ptr+i] = rplbot[i];
 		}
 		msgCntArr[ptr+126] = 0x01; // chatbot
 		msgCntArr[ptr+127] = 0x08;
@@ -812,7 +812,7 @@ function replyChatbot() {
 			 0x54,0x48,0x41,0x4E,0x4B,0x20,0x59,0x4F,
 			 0x55];     // HAVE A NICE DAY\nTHANK YOU
 		for(let i=0; i<25; i++) {
-			msgCntArr[ptr+i] = msgbot[i];
+			msgCntArr[ptr+i] = rplbot[i];
 		}
 		msgCntArr[ptr+126] = 0x01; // chatbot
 		msgCntArr[ptr+127] = 0x19;
