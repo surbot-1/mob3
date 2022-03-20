@@ -648,7 +648,9 @@ function putMsgCnt() {
 
 function message() {
 	sendMessage();
-	replyChatbot();
+	setTimeout(function() {
+		replyChatbot();
+	}, 2000);
 }
 	
 function sendMessage() {
@@ -887,8 +889,8 @@ alert('1');
 		     []]; //
 	
 function replyChatbot() {
-	var rplbot= new Uint8Array([]);
-	var msgbot= new Uint8Array([]);
+	var rplbot= new Uint8Array(128);
+	var msgbot= new Uint8Array(128);
 	var ptr = msgCntPtr-128*1;
 	var minfo = msgCntArr[ptr+126];
 	var msize = msgCntArr[ptr+127];
