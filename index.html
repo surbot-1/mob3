@@ -697,13 +697,13 @@ function updateMessage() {
         var minfo = msgCntArr[ds2ptr1i+126];
 	var msize = msgCntArr[ds2ptr1i+127];
 	
-        /* if (minfo==[0x00]) {  // this device
-		cx1i=408; cx1f=1080;
-		cy1i=208; cy1f=1248;
-	} else if (minfo==[0x01]) {  // chatbot
+        if (minfo==0x00) {  // this device
+		var cx1i=408; var cx1f=1080;
+                var cy1i=208; var cy1f=1248;
+	} else if (minfo==0x01) {  // chatbot
 		cx1i=408-408; cx1f=1080-408;
 		cy1i=208; cy1f=1248;
-	} */
+	} 
          
     for (let i=0; i<msize; i++) {
         var kHex = msgCntArr[ds2ptr1i+i];
