@@ -630,7 +630,7 @@ function putMsgCnt() {
 	for(let i=0; i<cpr; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
 	}
-	msgCntArr[ptr1+127] = 0x00; // sender
+	msgCntArr[ptr1+127] = 0x00; // this devie
         msgCntArr[ptr1+127] = cpr;  // message size
 }
 	
