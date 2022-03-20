@@ -639,8 +639,6 @@ function putMsgCnt() {
 	}
 	msgCntArr[ptr1+127] = 0x00; // this devie
         msgCntArr[ptr1+127] = cpr;  // message size
-	cx1i=408; cx1f=1080;
-	cy1i=208; cy1f=1248;
 }
 	
 </script>
@@ -655,9 +653,12 @@ function message() {
 	
 function sendMessage() {
 	if (chatbot) {
-        // putMsgChatbot();
+        cx1i=408-400; cx1f=1080-400;
+	cy1i=208; cy1f=1248;
 	} else {
 	putMsgCnt();
+	cx1i=408; cx1f=1080;
+	cy1i=208; cy1f=1248;
 	}
 	var cnv = document.getElementById("canvas");
         var ctx = cnv.getContext('2d');
@@ -805,8 +806,6 @@ function replyChatbot() {
 		}
 		msgCntArr[ptr+126] = 0x01; // chatbot
 		msgCntArr[ptr+127] = 0x08;
-		cx1i=408-408; cx1f=1080-408;
-		cy1i=208; cy1f=1248;
 		chatbot=true;
 		sendMessage();
 		chatbot=false;
@@ -820,8 +819,6 @@ function replyChatbot() {
 		}
 		msgCntArr[ptr+126] = 0x01; // chatbot
 		msgCntArr[ptr+127] = 0x19;
-		cx1i=408-408; cx1f=1080-408;
-		cy1i=208; cy1f=1248;
 		chatbot=true;
 		sendMessage();
 		chatbot=false;
