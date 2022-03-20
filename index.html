@@ -629,7 +629,8 @@ function putMsgCnt() {
 	for(let i=0; i<cpr; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
 	}
-        msgCntArr[ptr1+127] = cpr; // message size
+	msgCntArr[ptr1+127] = 0x00; // sender
+        msgCntArr[ptr1+127] = cpr;  // message size
 }
 	
 </script>
@@ -679,7 +680,18 @@ function sendMessage() {
 
 function updateMessage() {
 	
-         var msize = msgCntArr[ds2ptr1i+127];
+        var minfo = msgCntArr[ds2ptr1i+126];
+	var msize = msgCntArr[ds2ptr1i+127];
+	var maln=0x00;
+	
+	if (minfo==0x00) {
+		cx1i=408; cx1f=1080;
+		cy1i=208; cy1f=1248;
+	}
+	if (minfo==0x01) {
+		cx1i=408-408; cx1f=1080-408;
+		cy1i=208; cy1f=1248;
+	}
          
     for (let i=0; i<msize; i++) {
         var kHex = msgCntArr[ds2ptr1i+i];
@@ -781,6 +793,7 @@ function replyOfJanu() {
 	for(let i=0; i<8; i++) {
 		msgCntArr[i] = msgjanu[i];
 		ptr = ptr+128*1;
+		msgCntArr[ptr+126] = 0x01; // receiver
 		msgCntArr[ptr+127] = 0x08;
 	}
 }
