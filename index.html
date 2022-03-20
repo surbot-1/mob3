@@ -632,6 +632,8 @@ function putMsgCnt() {
 	}
 	msgCntArr[ptr1+127] = 0x00; // this devie
         msgCntArr[ptr1+127] = cpr;  // message size
+	cx1i=408; cx1f=1080;
+	cy1i=208; cy1f=1248;
 }
 	
 </script>
@@ -665,7 +667,6 @@ function sendMessage() {
         ctx.fillRect(0, 144, 1080, 1248);
         cx1=cx1i; cy1=cy1i;
 	var ptr1 = msgCntPtr;
-        var msize=0;
 	
         if (ptr1<128*8){
 		ds2ptr1i = 0;
@@ -692,13 +693,13 @@ function updateMessage() {
         var minfo = msgCntArr[ds2ptr1i+126];
 	var msize = msgCntArr[ds2ptr1i+127];
 	
-	if (minfo==[0x00]) {  // this device
+        /* if (minfo==[0x00]) {  // this device
 		cx1i=408; cx1f=1080;
 		cy1i=208; cy1f=1248;
 	} else if (minfo==[0x01]) {  // chatbot
 		cx1i=408-408; cx1f=1080-408;
 		cy1i=208; cy1f=1248;
-	}
+	} */
          
     for (let i=0; i<msize; i++) {
         var kHex = msgCntArr[ds2ptr1i+i];
@@ -802,6 +803,8 @@ function replyChatbot() {
 		msgCntArr[ptr+126] = 0x01; // chatbot
 		msgCntArr[ptr+127] = 0x08;
 		chatbot=true;
+		cx1i=408-408; cx1f=1080-408;
+		cy1i=208; cy1f=1248;
 		sendMessage();
 		chatbot=false;
 	} else {
