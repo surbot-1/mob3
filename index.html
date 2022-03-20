@@ -902,11 +902,11 @@ function replyChatbot() {
         var k=0;;
        for (let i=0; i<5; i++) {
 	for (let j=0; j<msize; j++) {
-               if (msgbot[j]==mchek[i][j]) {
-		       if (msize==mcsize[i][0]) {b=true; k=i; break;}
+               if (mchek[i][j]==msgbot[j]) {
+		       if (mcsize[i][0]==msize) {b=true; k=i; break;}
 	       } else {b=false; break;}
             }
-	     if (b){break;}
+	     if (b) {break;}
 	}
 	if (b) {
 		
