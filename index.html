@@ -622,7 +622,7 @@ var ds2ptr1 =0;
 
 function putMsgCnt() {
 	var ptr1 = msgCntPtr;
-        ptr1 += 128*7;
+        ptr1 += 128*6;
         if (ptr1>=128*32){ptr1==0;}
 	for(let i=0; i<48; i++) {
 		msgCntArr[ptr1+i] = msgArr[i];
@@ -645,7 +645,7 @@ function sendMessage() {
 	var ptr1 = msgCntPtr;
 	ds2ptr1 = msgCntPtr;
 	
-	for (let i=0; i<8; i++) {
+	for (let i=0; i<7; i++) {
 		updateMessage();
 		ds2ptr1 +=128;
                 if (ds2ptr1 >= 128*32) {
