@@ -903,10 +903,10 @@ function replyChatbot() {
        for (let i=0; i<5; i++) {
 	for (let j=0; j<msize; j++) {
                if (mchek[i][j]==msgbot[j]) {
-		       if (mcsize[i][0]==msize) {b=true; k=i; break;}
+		    b=true;
 	       } else {b=false; break;}
             }
-	     if (b) {break;}
+	     if (b&&mcsize[i][0]==msize) {b=true; k=i; break;}
 	}
 	if (b) {
 		
