@@ -660,17 +660,6 @@ function sendMessage() {
         if (ptr1<128*8){
 		ds2ptr1i = 0;
 		ds2ptr1f = ptr1;
-                var j=((ds2ptr1f-ds2ptr1i)/128)+1;
-                for (let i=0; i<j; i++) {
-                       var msize=msgCntPtr[ds2ptr1i+127];
-			for (let k=0; k<msize; k++) {
-                                var l=msize;
-				for (k>=24) {
-					mtsize++;
-					l-=24;
-                                }
-			}
-		}
 	} else {
 		ds2ptr1i = ptr1-128*8;
 		ds2ptr1f = ptr1;
@@ -769,6 +758,25 @@ function putChar1() {
         ctx.putImageData(imgData,cx1+4, cy1);   
     
      } 
+	
+</script>
+	
+	
+<script>
+	
+function messageTotalSize() {
+	var j=((ds2ptr1f-ds2ptr1i)/128)+1;
+                for (let i=0; i<j; i++) {
+                       var msize=msgCntPtr[ds2ptr1i+127];
+			for (let k=0; k<msize; k++) {
+                                var l=msize;
+				for (k>=24) {
+					mtsize++;
+					l-=24;
+                                }
+			}
+		}
+}
 	
 </script>
 	
