@@ -653,20 +653,16 @@ function message() {
 	function f1() {
 		var cnv = document.getElementById("canvas");
 		var ctx = cnv.getContext('2d');
-		ctx.fillStyle = "gray";
-		ctx.fillRect(i, cy1+j, 4, 4);
-		if (i>24) {
-			i=0;
-			ctx.fillStyle = "white";
-			ctx.fillRect(i+0, cy1+j, 4, 4);
-			ctx.fillRect(i+8, cy1+j, 4, 4);
-			ctx.fillRect(i+16, cy1+j, 4, 4);
-		} else {i+=8;}
+		if (j==0) {ctx.fillStyle = "gray";}
+		if (j==1) {ctx.fillStyle = "white";}
+		ctx.fillRect(i, cy1, 16, 16);
+		i+=8;
+		}
+		if (i>8*3){i=0; if(j==0){j=1;}else{j=0;}}
 	}
 
 	setTimeout(function() {
 		clearInterval(t1);
-		i=24; f1();
 		replyChatbot();
 	}, 5000);
 }
