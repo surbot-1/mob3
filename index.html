@@ -957,7 +957,7 @@ function replyChatbot() {
 			msgCntArr[ptr+i] = mbot[k][1][0][i];
 		}
 		msgCntArr[ptr+126] = 0x01; // chatbot
-		msgCntArr[ptr+127] = 0x0A;
+		msgCntArr[ptr+127] = mbot[k][1][1][0];
 		chatbot=true;
 		sendMessage();
 		chatbot=false;
