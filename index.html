@@ -648,16 +648,16 @@ function putMsgCnt() {
 
 function message() {
 	sendMessage();
-	var i=0; var j=0;
+	var i=0; var j=0; var k=0;
         var t1 = setInterval(f1,0500);
 	function f1() {
 		var cnv = document.getElementById("canvas");
 		var ctx = cnv.getContext('2d');
-		if (j==0) {ctx.fillStyle = "gray";}
-		if (j==1) {ctx.fillStyle = "white";}
-		ctx.fillRect(i, cy1, 16, 16);
+		if (k==0) {ctx.fillStyle = "green";}
+		if (k==1) {ctx.fillStyle = "white";}
+		ctx.fillRect(48+i, cy1+16+j, 16, 16);
 		i+=8;
-		if (i>8*3){i=0; if(j==0){j=1;}else{j=0;}}
+		if (i>8*3){i=0; if(k==0){k=1;}else{k=0;}}
 	}
 
 	setTimeout(function() {
