@@ -654,15 +654,14 @@ function message() {
 		var cnv = document.getElementById("canvas");
 		var ctx = cnv.getContext('2d');
 		ctx.fillStyle = "gray";
-		ctx.fillRect(cx1+i, cy1+j, 2, 2);
-		i+=8;
+		ctx.fillRect(i, cy1+j, 4, 4);
 		if (i>24) {
-			ctx.fillStyle = "white";
-			ctx.fillRect(cx1+0, cy1+j, 2, 2);
-			ctx.fillRect(cx1+8, cy1+j, 2, 2);
-			ctx.fillRect(cx1+16, cy1+j, 2, 2);
 			i=0;
-		}
+			ctx.fillStyle = "white";
+			ctx.fillRect(i+0, cy1+j, 4, 4);
+			ctx.fillRect(i+8, cy1+j, 4, 4);
+			ctx.fillRect(i+16, cy1+j, 4, 4);
+		} else {i+=8;}
 	}
 
 	setTimeout(function() {
