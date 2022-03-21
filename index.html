@@ -647,8 +647,27 @@ function putMsgCnt() {
 <script>
 
 function message() {
+        var i=0; var j=0;
 	sendMessage();
+        var t1 = setInterval(f1,0500);
+	function f1() {
+		var cnv = document.getElementById("canvas");
+		var ctx = cnv.getContext('2d');
+		ctx.fillStyle = "gray";
+		ctx.fillRect(cx1+i, cy1+j, 2, 2);
+		i+=8;
+		if (i>24) {
+			ctx.fillStyle = "white";
+			ctx.fillRect(cx1+0, cy1+j, 2, 2);
+			ctx.fillRect(cx1+8, cy1+j, 2, 2);
+			ctx.fillRect(cx1+16, cy1+j, 2, 2);
+			i=0;
+		}
+	}
+
 	setTimeout(function() {
+		clearInterval(t1);
+		i=24; f1();
 		replyChatbot();
 	}, 5000);
 }
