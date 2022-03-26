@@ -89,7 +89,7 @@ var msgbot=[[[""],
 			if(mbot==msgbot[i][0]) { 
 			rbot=msgbot[i][1]; b=true; break; 
 			}
-		} 
+		} alert(rbot);
 		if(b) {break;}
 	} 
 	if(!b) {rbot=msgbot[0][1];} alert(rbot);
