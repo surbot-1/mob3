@@ -47,16 +47,20 @@ var msgbot=[[[""],
 	    [[],[]],
 	    [[],[]]]; 
 	
-	var mcnt=15;
+	var mcnt=15; 
+	
+	
 
 	var nbot = document.getElementById("inField").value; 
-	var mbot;
+	var mbot; 
+	var rbot; 
+	var b=false;
+	
 	if (nbot.charCodeAt((nbot.length)-1)==(" ".charCodeAt(0))) { 
 		mbot = nbot.slice(0, (nbot.length)-1); 
 		// document.getElementById("div1").innerHTML += "<br>" + nbot +" "+ mbot; 
 	} else {mbot=nbot;}
-	var rbot; 
-	var b=false;
+	
 	for(let i=0; i<mcnt; i++) { 
 		for(let j=0; j<1; j++) { 
 			/*
