@@ -62,8 +62,7 @@ var msgbot=[[[""],
 	for(let i=0; i<msize; i++) { 
 		var charc=msgCntArr[ptr+i]; 
 		nbot += ascChar(charc); 
-		length++;
-	} alert((nbot.length)); 
+	} 
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<(nbot.length); i++) { 
@@ -76,12 +75,12 @@ var msgbot=[[[""],
 			} else if(charc>=97 && charc<=112) { } 
 		} 
 		cbot += ascChar(charc); 
-	} alert(cbot);
+	} 
 	
 	if(cbot.charCodeAt((cbot.length)-1)==(" ".charCodeAt(0))) {  
 		cbot = cbot.slice(0, (cbot.length)-1); 
 		mbot=cbot; 
-	} else {mbot=cbot;} alert(mbot);
+	} else {mbot=cbot;} 
 	
 	
 	for(let i=0; i<mcnt; i++) { 
