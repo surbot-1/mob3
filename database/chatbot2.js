@@ -93,13 +93,13 @@ var msgbot=[[[""],
 		if(b) {break;}
 	} 
 	if(!b) {rbot=msgbot[0][1];} 
-	rbot=rbot.toString(); alert((rbot.length)); alert((rbot.charCodeAt(0)));
+	rbot=rbot.toString(); 
 	for(let i=0; i<(rbot.length); i++) {  
-		msgCntArr[ptr+i]=(rbot.charCodeAt(i)); 
+		msgCntArr[ptr+i]=rbot.charCodeAt(i); 
 	} alert((msgCntArr[ptr+0]));
 	msgCntArr[ptr+510]=0x01;
-	msgCntArr[ptr+511]=(rbot.length); 
-	saybotrpl=true; alert((msgCntArr[ptr+511]));
+	msgCntArr[ptr+511]=rbot.length; 
+	saybotrpl=true; 
 }
 
 	
