@@ -95,7 +95,7 @@ var msgbot=[[[""],
 	if(!b) {rbot=msgbot[0][1];} alert(rbot);
 	for(let i=0; i<(rbot.length); i++) {  
 		msgCntArr[ptr+i]=(rbot.charCodeAt(i)); 
-	} 
+	} alert((msgCntArr[ptr+0]));
 	msgCntArr[ptr+510]=0x01;
 	msgCntArr[ptr+511]=(rbot.length); 
 	saybotrpl=true; alert((msgCntArr[ptr+511]));
