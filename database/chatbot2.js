@@ -1,4 +1,4 @@
-function saybot() { alert('5');
+function saybot() { alert('6');
 	
 var msgbot=[[[""],
 	     ["Have a nice day. Thank you"]],
@@ -63,7 +63,7 @@ var msgbot=[[[""],
 		var charc=msgCntArr[ptr+i]; 
 		// nbot += ascChar(charc); 
 		nbot[i] = charc; 
-	} nbot=nbot.toString();
+	} nbot=nbot.toString(); alert(nbot);
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<(nbot.length); i++) { 
