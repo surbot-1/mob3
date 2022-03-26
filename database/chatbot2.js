@@ -92,7 +92,7 @@ var msgbot=[[[""],
 		} alert(rbot);
 		if(b) {break;}
 	} 
-	if(!b) {rbot=msgbot[0][1];} alert(rbot);
+	if(!b) {rbot=msgbot[0][1];} alert(rbot); alert((rbot.length));
 	for(let i=0; i<(rbot.length); i++) {  
 		msgCntArr[ptr+i]=(rbot.charCodeAt(i)); 
 	} alert((msgCntArr[ptr+0]));
