@@ -92,9 +92,10 @@ var msgbot=[[[""],
 	if(!b) {rbot=msgbot[0][1];} 
 	for (let i=0; i<rbot.length; i++) {  
 		msgCntArr[ptr+i]=rbot.charCoadAt(i); 
-		msgCntArr[ptr+510]=0x01;
-		msgCntArr[ptr+511]=rbot.length;
-	}
+	} 
+	msgCntArr[ptr+510]=0x01;
+	msgCntArr[ptr+511]=rbot.length; 
+	saybotrpl=true;
 }
 
 	
