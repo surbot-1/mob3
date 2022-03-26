@@ -96,7 +96,7 @@ var msgbot=[[[""],
 		for(let j=0; j<1; j++) { 
 			if(mbot==msgbot[i][0]) { 
 			rbot=msgbot[i][1]; b=true; break; 
-			} else { }
+			} else {b=false;}
 		} 
 		if(b) {break;}
 	} 
