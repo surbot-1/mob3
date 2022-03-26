@@ -931,19 +931,18 @@ function replyChatbot() {
             }
 	     if (b&&mbot[i][0][1][0]==msize) {b=true; k=i; break;}
 	}
+	
 	if (b) {
 		for (let i=0; i<mbot[k][1][1][0]; i++) {
 			msgCntArr[ptr+i] = mbot[k][1][0][i];
 		}
 		msgCntArr[ptr+510] = 0x01; // chatbot
 		msgCntArr[ptr+511] = mbot[k][1][1][0]; 
-	} else { 
-		saybot();
-		chatbot=true;
-		sendMessage();
-		chatbot=false; 
-	} 
+	} else { saybot(); } 
 	
+	chatbot=true;
+	sendMessage();
+	chatbot=false; 
 }
 	
                 /*
