@@ -49,7 +49,8 @@ var msgbot=[[[""],
 	
 	var mcnt=15; 
 	
-	var nbot; // = new Uint8Array(512);
+	var nbot; // = new Uint8Array(512); 
+	var cbot;
 	var mbot; // = new Uint8Array(512);
 	var rbot; // = new Uint8Array(512);
 	var ptr = msgCntPtr-512*1;
@@ -58,29 +59,49 @@ var msgbot=[[[""],
 	var b=false;
 	
 	for(let i=0; i<msize; i++) { 
-		nbot += ascchar(msgCntArr[ptr+i]);
+		var charc=msgCntArr[ptr+i]; 
+		nbot += ascChar(charc); 
 	}
 	ptr = ptr+512*1; 
 	
-	if (nbot.charCodeAt((nbot.length)-1)==(" ".charCodeAt(0))) { 
-		mbot = nbot.slice(0, (nbot.length)-1); 
-	} else {mbot=nbot;}
+	for(let i=0; i<nbot.length; i++) { 
+		var charc=nbot.charCoadAt(i);
+		if (i==0) { 
+			if (charc>=65&&charc<=90){
+			} else if (charc>=97&&charc<=112) {charc-=32;} 
+		} else { 
+			if (charc>=65&&charc<=90){ charc+=32;
+			} else if (charc>=65&&charc<=90) { } 
+		} 
+		cbot += ascChar(charc); 
+	} 
+	
+	if (cbot.charCodeAt((cbot.length)-1)==(" ".charCodeAt(0))) {  
+		mbot = cbot.slice(0, (cbot.length)-1);  
+	} else {mbot=cbot;} 
+	
 	
 	for(let i=0; i<mcnt; i++) { 
 		for(let j=0; j<1; j++) { 
-			/*
-			if (mbot.charCoadAt((mbot[i][0].length)-1)==63) {
-				for(let k=0; k<(msgbot[i][0].length)-2; k++) { 
-					var tmbot+=msgbot[i][0].charCoadAt(k); 
-				} 
-			} */
-			
 			if(mbot==msgbot[i][0]) { 
 			rbot=msgbot[i][1]; b=true; break; 
 			}
 		} 
 		if(b) {break;}
 	} 
-	if(!b) {rbot=msgbot[0][1];}
-	document.getElementById("div1").innerHTML += "<br>" + rbot; 
+	if(!b) {rbot=msgbot[0][1];} 
+	for (let i=0; i<rbot.length; i++) {  
+		msgCntArr[ptr+i]=rbot.charCoadAt(i); 
+		msgCntArr[ptr+510]=0x00;
+		msgCntArr[ptr+511]=rbot.length;
+	}
 }
+
+	
+	
+	
+	
+	
+	
+	
+	
