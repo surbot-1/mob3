@@ -615,7 +615,7 @@ function putChar() {
 <script>
 alert('1');
 
-var msgCntBuf = new ArrayBuffer(128*32); // 80*16
+var msgCntBuf = new ArrayBuffer(512*32); // 80*16
 var msgCntView = new Uint8Array(msgCntBuf);
 var msgCntArr = new Uint8Array(msgCntBuf);
 var msgCntPtr = 0;
@@ -631,14 +631,14 @@ var cx1i=408; var cx1f=1080;
 var cy1i=208; var cy1f=1248;
 
 function putMsgCnt() {
-	var ptr1 = msgCntPtr;
-        ptr1 +=0;
-        if (ptr1>=128*32){ptr1==0;}
+	var ptr = msgCntPtr;
+        ptr1ptr +=0;
+        if (ptr>=512*32){ptr==0;}
 	for(let i=0; i<cpr; i++) {
-		msgCntArr[ptr1+i] = msgArr[i];
+		msgCntArr[ptr+i] = msgArr[i];
 	}
-	msgCntArr[ptr1+127] = 0x00; // this devie
-        msgCntArr[ptr1+127] = cpr;  // message size
+	msgCntArr[ptr+510] = 0x00; // this devie
+        msgCntArr[ptr+511] = cpr;  // message size
 }
 	
 </script>
@@ -681,32 +681,32 @@ function sendMessage() {
         ctx.fillRect(0, 144, 1080, 1248);
         cx1=cx1i; cy1=cy1i;
 	
-	var ptr1 = msgCntPtr;
+	var ptr = msgCntPtr;
 	
-        if (ptr1<128*8){
+        if (ptr<512*8){
 		ds2ptr1i = 0;
-		ds2ptr1f = ptr1;
+		ds2ptr1f = ptr;
 	} else {
-		ds2ptr1i = ptr1-128*8;
-		ds2ptr1f = ptr1;
+		ds2ptr1i = ptr-512*8;
+		ds2ptr1f = ptr;
 	}
-        var j=((ds2ptr1f-ds2ptr1i)/128)+1;
+        var j=((ds2ptr1f-ds2ptr1i)/512)+1;
 	for (let i=0; i<j; i++) {
 		updateMessage();
-		ds2ptr1i +=128;
-                if (ds2ptr1i >= 128*32) {
+		ds2ptr1i +=512;
+                if (ds2ptr1i >= 512*32) {
 			ds2ptr1i=0;
 		}
 	}
-	ptr1+=128;
-	if (ptr1>=128*32){ptr1=0;}
-	msgCntPtr = ptr1;
+	ptr+=512;
+	if (ptr>=512*32){ptr=0;}
+	msgCntPtr = ptr;
 }
 
 function updateMessage() {
 	
-        var minfo = msgCntArr[ds2ptr1i+126];
-	var msize = msgCntArr[ds2ptr1i+127];
+        var minfo = msgCntArr[ds2ptr1i+510];
+	var msize = msgCntArr[ds2ptr1i+511];
 	
         if (minfo==0x00) {  // this device
 		cx1i=632; cx1f=1080;
@@ -902,64 +902,19 @@ alert('1');
 		[[[],[]],[[],[]]],
 		[[[],[]],[[],[]]] ]; //
     var mcnt = [0x0A] //
-	    
-        var mchek = [[0x48,0x49], // HI
-		     [0x48,0x45,0x4C,0x4C,0x4F], // HELLO
-                     [0x48,0x4F,0x57,0x20,0x41,0x52,0x45,0x20,0x59,0x4F,0x55], // HOW ARE YOU
-                     [0x47,0x4F,0x4F,0x44,0x20,0x4D,0x4F,0x52,0x4E,0x49,0x4E,0x47], //GOOD MORNING
-		     [0x47,0x4F,0x4F,0x44,0x20,0x45,0x56,0x45,0x4E,0x49,0x4E,0x47], //GOOD EVENING
-		     [0x46,0x49,0x4E,0x45], // FINE
-		     [0x54,0x48,0x41,0x4E,0x4B,0x20,0x59,0x4F,0x55], // THANK YOU
-		     [0x42,0x59,0x45], // BYE
-		     [0x57,0x48,0x41,0x54,0x20,0x41,0x52,0x45,0x20,0x59,0x4F,0x55,0x20,0x44,0x4F,0x49,0x4E,0x47],
-		     [[[],[]],[[],[]]] ]; // 
-		    
-       var mreply = [[0x48,0x49], // HI
-		     [0x48,0x45,0x4C,0x4C,0x4F], // HELLO
-		     [0x46,0x49,0x4E,0x45,0x2E,0x20,0x59,0x4F,0x55,0x3F], // FINE. YOU?
-		     [0x47,0x4F,0x4F,0x44,0x20,0x4D,0x4F,0x52,0x4E,0x49,0x4E,0x47], // GOOD MORNING
-		     [0x47,0x4F,0x4F,0x44,0x20,0x45,0x56,0x45,0x4E,0x49,0x4E,0x47], // GOOD EVENING
-		     [0x47,0x4F,0x4F,0x44], // GOOD
-		     [0x57,0x45,0x4C,0x43,0x4F,0x4D,0x45], // WELCOME
-		     [0x42,0x59,0x45,0x20,0x42,0x59,0x45], // BYE BYE 
-		     [0x4E,0x4F,0x54,0x48,0x49,0x4E,0x47], // NOTHING
-		     []];
+	           	
+function replyChatbot() { 
 	
-       var mcsize = [[0x02], //
-		     [0x05], //
-		     [0x0B], //
-		     [0x0C], //
-		     [0x0C], //
-		     [0x04], //
-		     [0x09], // THANK YOU
-		     [0x03], // BYE 
-		     [0x12],
-		     []];
-	
-       var mrsize = [[0x02], //
-		     [0x05], //
-		     [0x0A], //
-		     [0x0C], //
-		     [0x0C], //
-		     [0x04], //
-		     [0x07], // WELCOME
-		     [0x07], // BYE BYE 
-		     [0x07],
-		     []];
-	
-	var mtcnt =  [0x09] //
-	
-function replyChatbot() {
-	var rplbot= new Uint8Array(128);
-	var msgbot= new Uint8Array(128);
-	var ptr = msgCntPtr-128*1;
-	var minfo = msgCntArr[ptr+126];
-	var msize = msgCntArr[ptr+127];
+	var msgbot= new Uint8Array(512);
+	var rplbot= new Uint8Array(512);
+	var ptr = msgCntPtr-512*1;
+	var minfo = msgCntArr[ptr+510];
+	var msize = msgCntArr[ptr+511];
 	
 	for(let i=0; i<msize; i++) {
 		msgbot[i] = msgCntArr[ptr+i];
 	}
-	ptr = ptr+128*1;
+	ptr = ptr+512*1;
 	
 	var b=true;
         var k=0;;
@@ -976,8 +931,8 @@ function replyChatbot() {
 		for (let i=0; i<mbot[k][1][1][0]; i++) {
 			msgCntArr[ptr+i] = mbot[k][1][0][i];
 		}
-		msgCntArr[ptr+126] = 0x01; // chatbot
-		msgCntArr[ptr+127] = mbot[k][1][1][0];
+		msgCntArr[ptr+510] = 0x01; // chatbot
+		msgCntArr[ptr+511] = mbot[k][1][1][0];
 		chatbot=true;
 		sendMessage();
 		chatbot=false;
@@ -989,8 +944,8 @@ function replyChatbot() {
 		for (let i=0; i<25; i++) {
 			msgCntArr[ptr+i] = rplbot[i];
 		}
-		msgCntArr[ptr+126] = 0x01; // chatbot
-		msgCntArr[ptr+127] = 0x19;
+		msgCntArr[ptr+510] = 0x01; // chatbot
+		msgCntArr[ptr+511] = 0x19;
 		chatbot=true;
 		sendMessage();
 		chatbot=false;
