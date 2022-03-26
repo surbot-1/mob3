@@ -67,7 +67,7 @@ var msgbot=[[[""],
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<(nbot.length); i++) { 
-		var charc=nbot.charCodeAt(i);
+		var charc=(nbot.charCodeAt(i));
 		if(i==0) { 
 			if(charc>=65 && charc<=90){
 			} else if(charc>=97 && charc<=112) {charc-=32;} 
