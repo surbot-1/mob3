@@ -49,16 +49,21 @@ var msgbot=[[[""],
 	
 	var mcnt=15; 
 	
-	
-
-	var nbot = document.getElementById("inField").value; 
-	var mbot; 
-	var rbot; 
+	var nbot; // = new Uint8Array(512);
+	var mbot; // = new Uint8Array(512);
+	var rbot; // = new Uint8Array(512);
+	var ptr = msgCntPtr-512*1;
+	var minfo = msgCntArr[ptr+510];
+	var msize = msgCntArr[ptr+511]; 
 	var b=false;
+	
+	for(let i=0; i<msize; i++) { 
+		nbot += ascchar(msgCntArr[ptr+i]);
+	}
+	ptr = ptr+512*1; 
 	
 	if (nbot.charCodeAt((nbot.length)-1)==(" ".charCodeAt(0))) { 
 		mbot = nbot.slice(0, (nbot.length)-1); 
-		// document.getElementById("div1").innerHTML += "<br>" + nbot +" "+ mbot; 
 	} else {mbot=nbot;}
 	
 	for(let i=0; i<mcnt; i++) { 
