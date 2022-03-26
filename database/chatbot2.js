@@ -1,7 +1,7 @@
 function saybot() { 
 
 var msgbot=[[[""],
-	     ["Have a nice day\nThank you"]],
+	     ["Have a nice day. Thank you"]],
 	    [["Hi"],
 	     ["Hi"]],
 	    [["Hello"],
