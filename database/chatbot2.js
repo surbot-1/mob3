@@ -68,17 +68,17 @@ var msgbot=[[[""],
 	
 	for(let i=0; i<(nbot.length); i++) { 
 		var charc=(nbot.charCoadAt(i));
-		if (i==0) { 
-			if (charc>=65 && charc<=90){
-			} else if (charc>=97 && charc<=112) {charc-=32;} 
+		if(i==0) { 
+			if(charc>=65 && charc<=90){
+			} else if(charc>=97 && charc<=112) {charc-=32;} 
 		} else { 
 			if (charc>=65 && charc<=90){ charc+=32;
-			} else if (charc>=97 && charc<=112) { } 
+			} else if(charc>=97 && charc<=112) { } 
 		} 
 		cbot += ascChar(charc); 
 	} alert(cbot);
 	
-	if (cbot.charCodeAt((cbot.length)-1)==(" ".charCodeAt(0))) {  
+	if(cbot.charCodeAt((cbot.length)-1)==(" ".charCodeAt(0))) {  
 		cbot = cbot.slice(0, (cbot.length)-1); 
 		mbot=cbot; 
 	} else {mbot=cbot;} alert(mbot);
@@ -93,7 +93,7 @@ var msgbot=[[[""],
 		if(b) {break;}
 	} 
 	if(!b) {rbot=msgbot[0][1];} 
-	for (let i=0; i<rbot.length; i++) {  
+	for(let i=0; i<rbot.length; i++) {  
 		msgCntArr[ptr+i]=rbot.charCoadAt(i); 
 	} 
 	msgCntArr[ptr+510]=0x01;
