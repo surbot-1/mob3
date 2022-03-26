@@ -626,7 +626,7 @@ var ds2ptr1 = 0;
 var msgSize = 0;
 var ds2ptr1i=0; var ds2ptr1f=0;
 var chatbot=false; 
-var saybot=false;
+var saybotrpl=false;
 	
 
 var cx1=408; var cy1=208; var cw1=24; var ch1=48;
@@ -944,7 +944,7 @@ function replyChatbot() {
 		chatbot=false; 
 	} else { 
 		saybot();
-		if (saybot) { 
+		if (saybotrpl) { 
 			chatbot=true; 
 			sendMessage(); 
 			chatbot=false; 
