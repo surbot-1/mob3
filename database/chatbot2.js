@@ -77,7 +77,8 @@ var msgbot=[[[""],
 	} 
 	
 	if (cbot.charCodeAt((cbot.length)-1)==(" ".charCodeAt(0))) {  
-		mbot = cbot.slice(0, (cbot.length)-1);  
+		cbot = cbot.slice(0, (cbot.length)-1); 
+		mbot=cbot; 
 	} else {mbot=cbot;} 
 	
 	
@@ -95,7 +96,7 @@ var msgbot=[[[""],
 	} 
 	msgCntArr[ptr+510]=0x01;
 	msgCntArr[ptr+511]=rbot.length; 
-	saybot=true;
+	saybotrpl=true;
 }
 
 	
