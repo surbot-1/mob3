@@ -1,4 +1,4 @@
-function saybot() { 
+function saybot() { alert(([0x41].toString('utf8')));
 	
 var msgbot=[[[""],
 	     ["Have a nice day. Thank you"]],
