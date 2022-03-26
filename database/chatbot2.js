@@ -67,7 +67,7 @@ var msgbot=[[[""],
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<(nbot.length); i++) { 
-		var charc=(nbot.charCoadAt(i));
+		var charc=nbot.charCodeAt(i);
 		if(i==0) { 
 			if(charc>=65 && charc<=90){
 			} else if(charc>=97 && charc<=112) {charc-=32;} 
@@ -94,7 +94,7 @@ var msgbot=[[[""],
 	} 
 	if(!b) {rbot=msgbot[0][1];} 
 	for(let i=0; i<rbot.length; i++) {  
-		msgCntArr[ptr+i]=rbot.charCoadAt(i); 
+		msgCntArr[ptr+i]=rbot.charCodeAt(i); 
 	} 
 	msgCntArr[ptr+510]=0x01;
 	msgCntArr[ptr+511]=rbot.length; 
