@@ -24,7 +24,7 @@ var msgbot=[[[""],
 	     ["Good evening"]],
 	    [["What is your name?"], // ? 
 	     ["My name is sAy"]],
-	    [["Tell me yourself"],
+	    [["Tell me about yourself"],
 	     ["I am sAy. I am a chatbot integrated with AI and ML."]],
 	    [["What is your favorite color?"], // ? 
 	     ["My favorite color is blue"]],
