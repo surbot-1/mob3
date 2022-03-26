@@ -921,7 +921,7 @@ function replyChatbot() {
 	}
 	ptr = ptr+512*1;
 	
-	var b=true;
+	var b=false;
         var k=0;;
        for (let i=0; i<mcnt; i++) {
 	for (let j=0; j<msize; j++) {
@@ -938,6 +938,9 @@ function replyChatbot() {
 		}
 		msgCntArr[ptr+510] = 0x01; // chatbot
 		msgCntArr[ptr+511] = mbot[k][1][1][0]; 
+		chatbot=true;
+		sendMessage();
+		chatbot=false;
 /* } else { saybot(); } 
 	
 	chatbot=true;
