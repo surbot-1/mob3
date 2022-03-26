@@ -82,15 +82,27 @@ var msgbot=[[[""],
 		mbot=cbot; 
 	} else {mbot=cbot;} 
 	
+	for(let i=0; i<1; i++) { 
+		check(); 
+		if(b) {reply(); break;}
+		mbot+="?"; 
+		check(); 
+		if(b) {reply(); break;} 
+		if(!b) {reply(); break;}
+	}
 	
+    function check() {
 	for(let i=0; i<mcnt; i++) { 
 		for(let j=0; j<1; j++) { 
 			if(mbot==msgbot[i][0]) { 
 			rbot=msgbot[i][1]; b=true; break; 
-			}
+			} else { }
 		} 
 		if(b) {break;}
 	} 
+    }
+	
+    function reply() {
 	if(!b) {rbot=msgbot[0][1];} 
 	rbot=rbot.toString(); 
 	for(let i=0; i<(rbot.length); i++) {  
@@ -99,6 +111,8 @@ var msgbot=[[[""],
 	msgCntArr[ptr+510]=0x01;
 	msgCntArr[ptr+511]=(rbot.length); 
 	saybotrpl=true; 
+    }
+	
 }
 
 	
