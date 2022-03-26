@@ -1,7 +1,7 @@
 function saybot() { // alert(((["ABC"]).toString('utf8')));
 	
 var msgbot=[[[""],
-	     ["Have a nice day. Thank you"]],
+	     ["Have a nice day.  Thank you"]],
 	    [["Hi"],
 	     ["Hi"]],
 	    [["Hello"],
@@ -30,12 +30,18 @@ var msgbot=[[[""],
 	     ["My favorite color is blue"]],
 	    [["What is your age?"], // ? 
 	     ["I am a software. I have been created when you installed the sAy app."]],
+	    [["What is your country?"],
+	     ["My country is India"]],
+	    [["What is ai?"],
+	     ["AI means Artificial Intelligence"]],
+	    [["What is ml?"],
+	     ["ML means Machine Learning"]],
 	    [[""],
 	     [""]],
 	    [[""],
 	     [""]],
-	    [[],[]],
-	    [[],[]],
+	    [[""],
+	     [""]],
 	    [[],[]],
 	    [[],[]],
 	    [[],[]],
@@ -47,7 +53,7 @@ var msgbot=[[[""],
 	    [[],[]],
 	    [[],[]]]; 
 	
-	var mcnt=15; 
+	var mcnt=18; 
 	
 	var nbot=""; // = new Uint8Array(512); 
 	var cbot="";
