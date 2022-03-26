@@ -61,11 +61,11 @@ var msgbot=[[[""],
 	for(let i=0; i<msize; i++) { 
 		var charc=msgCntArr[ptr+i]; 
 		nbot += ascChar(charc); 
-	} alert(nbot);
+	} alert(nbot.length); 
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<nbot.length; i++) { 
-		var charc=nbot.charCoadAt(i);
+		var charc=(nbot.charCoadAt(i));
 		if (i==0) { 
 			if (charc>=65&&charc<=90){
 			} else if (charc>=97&&charc<=112) {charc-=32;} 
