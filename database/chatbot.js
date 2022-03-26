@@ -1,4 +1,4 @@
-function chatbot() { 
+function saybot() { 
 
 var msgbot=[[[""],
 	     ["Have a nice day\nThank you"]],
