@@ -61,9 +61,8 @@ var msgbot=[[[""],
 	
 	for(let i=0; i<msize; i++) { 
 		var charc=msgCntArr[ptr+i]; 
-		// nbot += ascChar(charc); 
-		nbot[i] = charc; 
-	} nbot=nbot.toString(); alert(nbot);
+		nbot += ascChar(charc); 
+	} 
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<(nbot.length); i++) { 
