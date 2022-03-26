@@ -8,7 +8,10 @@
   
 <body>
 
+<script src="database/asctochar.js"></script>
+<script src="database/chatbot2.js"></script>
 <script src="ubuntufont.js"></script>
+<script src="ubuntubold.js"></script>
 <script src="font1632.js"></script>
 <script src="font2448.js"></script>
 <script src="font3264.js"></script>
@@ -927,16 +930,19 @@ function replyChatbot() {
 	     if (b&&mbot[i][0][1][0]==msize) {b=true; k=i; break;}
 	}
 	if (b) {
-		
 		for (let i=0; i<mbot[k][1][1][0]; i++) {
 			msgCntArr[ptr+i] = mbot[k][1][0][i];
 		}
 		msgCntArr[ptr+510] = 0x01; // chatbot
-		msgCntArr[ptr+511] = mbot[k][1][1][0];
+		msgCntArr[ptr+511] = mbot[k][1][1][0]; 
+	} else { 
+		saybot();
 		chatbot=true;
 		sendMessage();
-		chatbot=false;
-	} else {
+		chatbot=false; 
+	}
+	
+                /*
 		rplbot= [0x48,0x41,0x56,0x45,0x20,0x41,0x20,0x4E,
 			 0x49,0x43,0x45,0x20,0x44,0x41,0x59,0x0A,
 			 0x54,0x48,0x41,0x4E,0x4B,0x20,0x59,0x4F,
@@ -948,8 +954,8 @@ function replyChatbot() {
 		msgCntArr[ptr+511] = 0x19;
 		chatbot=true;
 		sendMessage();
-		chatbot=false;
-	} 
+		chatbot=false; 
+                */
 		
 	/*if (msgbot[0]==[0x48]&&msgbot[1]==[0x49]&&msize==[0x02]) {   // HI
 		rplbot= [0x48,0x45,0x4C,0x4C,0x4F,0x20,0x20,0x20];   // HELLO
