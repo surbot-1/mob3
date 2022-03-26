@@ -1,4 +1,4 @@
-function saybot() { alert('8');
+function saybot() { alert('5');
 	
 var msgbot=[[[""],
 	     ["Have a nice day. Thank you"]],
@@ -49,10 +49,10 @@ var msgbot=[[[""],
 	
 	var mcnt=15; 
 	
-	var nbot; // = new Uint8Array(512); 
-	var cbot;
-	var mbot; // = new Uint8Array(512);
-	var rbot; // = new Uint8Array(512);
+	var nbot=""; // = new Uint8Array(512); 
+	var cbot="";
+	var mbot=""; // = new Uint8Array(512);
+	var rbot=""; // = new Uint8Array(512);
 	var length=0;
 	var ptr = msgCntPtr-512*1; 
 	var minfo = msgCntArr[ptr+510];
@@ -61,8 +61,9 @@ var msgbot=[[[""],
 	
 	for(let i=0; i<msize; i++) { 
 		var charc=msgCntArr[ptr+i]; 
-		nbot += ascChar(charc); 
-	} 
+		// nbot += ascChar(charc); 
+		nbot[i] = charc; 
+	} nbot=nbot.toString();
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<(nbot.length); i++) { 
