@@ -49,10 +49,10 @@ var msgbot=[[[""],
 	
 	var mcnt=15; 
 	
-	var nbot=""; // = new Uint8Array(512); 
-	var cbot="";
-	var mbot=""; // = new Uint8Array(512);
-	var rbot=""; // = new Uint8Array(512);
+	var nbot; // = new Uint8Array(512); 
+	var cbot;
+	var mbot; // = new Uint8Array(512);
+	var rbot; // = new Uint8Array(512);
 	var length=0;
 	var ptr = msgCntPtr-512*1; 
 	var minfo = msgCntArr[ptr+510];
@@ -95,7 +95,7 @@ var msgbot=[[[""],
 	rbot=rbot.toString(); 
 	for(let i=0; i<(rbot.length); i++) {  
 		msgCntArr[ptr+i]=(rbot.charCodeAt(i)); 
-	} alert((msgCntArr[ptr+0]));
+	} 
 	msgCntArr[ptr+510]=0x01;
 	msgCntArr[ptr+511]=(rbot.length); 
 	saybotrpl=true; 
