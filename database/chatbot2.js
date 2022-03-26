@@ -50,7 +50,6 @@ var msgbot=[[[""],
 	var mcnt=15; 
 	
 	var nbot=""; // = new Uint8Array(512); 
-	var abot=[];
 	var cbot="";
 	var mbot=""; // = new Uint8Array(512);
 	var rbot=""; // = new Uint8Array(512);
@@ -63,9 +62,7 @@ var msgbot=[[[""],
 	for(let i=0; i<msize; i++) { 
 		var charc=msgCntArr[ptr+i]; 
 		nbot += ascChar(charc); 
-		abot[i] = charc; 
-	} alert('1');
-	nbot=abot.toString('utf8');
+	} 
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<(nbot.length); i++) { 
