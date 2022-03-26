@@ -53,7 +53,8 @@ var msgbot=[[[""],
 	var cbot="";
 	var mbot=""; // = new Uint8Array(512);
 	var rbot=""; // = new Uint8Array(512);
-	var ptr = msgCntPtr-512*1;
+	var ptr = msgCntPtr-512*1; 
+	var length=0;
 	var minfo = msgCntArr[ptr+510];
 	var msize = msgCntArr[ptr+511]; 
 	var b=false;
@@ -61,7 +62,7 @@ var msgbot=[[[""],
 	for(let i=0; i<msize; i++) { 
 		var charc=msgCntArr[ptr+i]; 
 		nbot += ascChar(charc); 
-	} alert(nbot.length); 
+	} alert((nbot.length)); 
 	ptr = ptr+512*1; 
 	
 	for(let i=0; i<nbot.length; i++) { 
