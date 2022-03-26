@@ -95,7 +95,7 @@ var msgbot=[[[""],
 	} 
 	msgCntArr[ptr+510]=0x01;
 	msgCntArr[ptr+511]=rbot.length; 
-	saybotrpl=true;
+	saybot=true;
 }
 
 	
