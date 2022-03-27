@@ -18,12 +18,17 @@ function drawKeypad(x, y) {
     imgViwe[i+1] = 0x00; 
     imgViwe[i+2] = 0x00; 
     imgViwe[i+3] = 0xFF; 
-  }
+  } 
   
-  cord(); 
-  draw();
+  function draw(kc, kr. kw, kh, kl, kt) { 
+      for (let i=0; i<kw*4*kh; i++) { 
+        var kx=x+(kw+kl*2)*kc; 
+        var ky=y+(kh+kt*2)*kr; 
+        imgData.data[i] = imgView[(kcl*kw)*kr+kc+i]; 
+      } 
+    ctx.putImageData(imgData,kx, ky);
+  } 
   
-  function cord() { 
   for (let j=0; j<krw; j++) { 
     for (let i=0; i<kcl; i++) { 
       if (i==0 && j==0) {} 
@@ -34,15 +39,5 @@ function drawKeypad(x, y) {
       draw(kc, kr, kw, kh, kl, kt); 
     } 
   }  
-  }
-  
-  function draw(kc, kr. kw, kh, kl, kt) { 
-      for (let i=0; i<kw*4*kh; i++) { 
-        var kx=x+(kw+kl*2)*kc; 
-        var ky=y+(kh+kt*2)*kr; 
-        imgData.data[i] = imgView[(kcl*kw)*kr+kc+i]; 
-      } 
-    ctx.putImageData(imgData,kx, ky);
-  } 
   
 }
