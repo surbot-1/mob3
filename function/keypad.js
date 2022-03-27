@@ -26,7 +26,7 @@ function drawKeypad(x, y) { alert('1');
         var ky=y+(kh+kt*2)*kr; 
         imgData.data[i] = imgView[kcl*kw*kr+kc+i]; 
       } 
-    ctx.putImageData(imgData,kx, ky);
+    ctx.putImageData(imgData, kx, ky);
   } 
   
   for (let j=0; j<krw; j++) { 
