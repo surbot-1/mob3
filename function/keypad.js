@@ -20,11 +20,11 @@ function drawKeypad(x, y) { alert('1');
     imgViwe[i+3] = 0xFF; 
   } 
   
-  function draw(kc, kr. kw, kh, kl, kt) { 
+  function draw(kc, kr, kw, kh, kl, kt) { 
       for (let i=0; i<kw*4*kh; i++) { 
         var kx=x+(kw+kl*2)*kc; 
         var ky=y+(kh+kt*2)*kr; 
-        imgData.data[i] = imgView[(kcl*kw)*kr+kc+i]; 
+        imgData.data[i] = imgView[kcl*kw*kr+kc+i]; 
       } 
     ctx.putImageData(imgData,kx, ky);
   } 
