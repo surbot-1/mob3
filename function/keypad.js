@@ -1,4 +1,4 @@
-function drawKeypad(x, y) {
+function drawKeypad(x, y) { alert('1');
   // var x=0; var y=0; 
   // var w=80*10; var h=80*4; 
   var kcl=10; var krw=4; 
