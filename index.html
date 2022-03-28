@@ -691,11 +691,11 @@ function sendMessage() {
 	
 	var ptr = msgCntPtr;
 	
-        if (ptr<512*8){
+        if (ptr<512*12){
 		ds2ptr1i = 0;
 		ds2ptr1f = ptr;
 	} else {
-		ds2ptr1i = ptr-512*8;
+		ds2ptr1i = ptr-512*12;
 		ds2ptr1f = ptr;
 	}
         var j=((ds2ptr1f-ds2ptr1i)/512)+1;
