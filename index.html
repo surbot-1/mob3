@@ -631,7 +631,9 @@ var chatbot=false;
 var saybotrpl=false;
 	
 
-var cx1=408; var cy1=208; var cw1=24; var ch1=32;
+var cx1=408; var cy1=208; 
+var cw1=24; var ch1=32; 
+var cws1=0; var chs1=0;
 var oh1=33;
 var cx1i=408; var cx1f=1080;
 var cy1i=208; var cy1f=1248;
@@ -729,7 +731,7 @@ function updateMessage() {
     for (let i=0; i<msize; i++) {
         var kHex = msgCntArr[ds2ptr1i+i];
 	if (kHex==0x0A) {
-             cx1=cx1i; cy1+=64;
+             cx1=cx1i; cy1+=ch1+chs1;
 	     if (cy1>=cy1f) {
 	     cx1=cx1i; cy1=cy1f;
              // ctx.fillStyle = "white";
@@ -738,7 +740,7 @@ function updateMessage() {
          } else {
             oh1=kHex-0x20;
 	    putChar1();
-	    cx1+=28;
+	    cx1+=cw1+cws1;
 	    if (cx1>=cx1f) {cx1=cx1i; cy1+=64;}
 	    if (cy1>=cy1f) {
 	    cx1=cx1i; cy1=cy1i;
