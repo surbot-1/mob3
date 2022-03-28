@@ -1,7 +1,7 @@
 function saybot() { // alert(((["ABC"]).toString('utf8')));
 	
 var msgbot=[[[""],
-	     ["Have a nice day.  Thank you"]],
+	     ["Have a nice day. Thank you"]],
 	    [["Hi"],
 	     ["Hi"]],
 	    [["Hello"],
