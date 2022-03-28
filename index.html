@@ -730,7 +730,7 @@ function updateMessage() {
          
     for (let i=0; i<msize; i++) {
         var kHex = msgCntArr[ds2ptr1i+i];
-	if (kHex==0x0A) {
+	if (kHex==0x0A) { // new line
              cx1=cx1i; cy1+=ch1+chs1;
 	     if (cy1>=cy1f) {
 	     cx1=cx1i; cy1=cy1f;
@@ -741,7 +741,7 @@ function updateMessage() {
             oh1=kHex-0x20;
 	    putChar1();
 	    cx1+=cw1+cws1;
-	    if (cx1>=cx1f) {cx1=cx1i; cy1+=64;}
+	    if (cx1>=cx1f) {cx1=cx1i; cy1+=ch1+chs1;}
 	    if (cy1>=cy1f) {
 	    cx1=cx1i; cy1=cy1i;
            // ctx.fillStyle = "white";
@@ -753,7 +753,7 @@ function updateMessage() {
              if (cx1==cx1i) {
 		   cx1=cx1i; cy1+=0;
 	     } else {
-		   cx1=cx1i; cy1+=64;
+		   cx1=cx1i; cy1+=ch1+chs1;
 		   if (cy1>=cy1f) {
 			  cx1=cx1i; cy1=cy1i;
 		   }
