@@ -631,7 +631,7 @@ var chatbot=false;
 var saybotrpl=false;
 	
 
-var cx1=408; var cy1=208; var cw1=24; var ch1=48;
+var cx1=408; var cy1=208; var cw1=24; var ch1=32;
 var oh1=33;
 var cx1i=408; var cx1f=1080;
 var cy1i=208; var cy1f=1248;
@@ -780,7 +780,7 @@ function putChar1() {
 	var fb; var k=0; 
         for (let i=0; i<(cw1/8)*ch1; i++) { 
             for (let j=0; j<8; j++) {
-                 fb = font2448[(cw1/8)*ch1*oh1+i] & cb[j]; 
+                 fb = ubuntufont[(cw1/8)*ch1*oh1+i] & cb[j]; 
                  if (fb) {
 			if (chatbot) {
 				fontView[k+0] = 0x00;
