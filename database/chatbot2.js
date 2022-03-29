@@ -26,8 +26,8 @@ var msgbot=[[[""],
 	     ["My name is sAy"]],
 	    [["Tell me about yourself"],
 	     ["I am sAy. I am a chatbot integrated with AI and ML."]],
-	    [["What is your favorite color?"], // ? 
-	     ["My favorite color is blue"]],
+	    [["What is your favourite color?"], // ? 
+	     ["My favourite color is blue"]],
 	    [["What is your age?"], // ? 
 	     ["I am a software. I have been created when you installed the sAy app."]],
 	    [["What is your country?"],
@@ -36,10 +36,10 @@ var msgbot=[[[""],
 	     ["AI means Artificial Intelligence"]],
 	    [["What is ml?"],
 	     ["ML means Machine Learning"]],
-	    [[""],
-	     [""]],
-	    [[""],
-	     [""]],
+	    [["Alphabets"],
+	     ["ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"]],
+	    [["Solar system"],
+	     ["Solar system consists of a Sun and nine Planets"]],
 	    [[""],
 	     [""]],
 	    [[],[]],
@@ -53,7 +53,7 @@ var msgbot=[[[""],
 	    [[],[]],
 	    [[],[]]]; 
 	
-	var mcnt=18; 
+	var mcnt=20; 
 	
 	var nbot=""; // = new Uint8Array(512); 
 	var cbot="";
