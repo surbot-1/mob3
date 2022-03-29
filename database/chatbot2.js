@@ -53,7 +53,7 @@ var msgbot=[[[""],
 	    [[],[]],
 	    [[],[]]]; 
 	
-	var mcnt=22; 
+        // var mcnt=22; 
 	
 	var nbot=""; // = new Uint8Array(512); 
 	var cbot="";
@@ -98,7 +98,7 @@ var msgbot=[[[""],
 	}
 	
     function check() {
-	for(let i=0; i<mcnt; i++) { 
+	for(let i=0; i<(msgbot.length); i++) { 
 		for(let j=0; j<1; j++) { 
 			if(mbot==msgbot[i][0]) { 
 			rbot=msgbot[i][1]; b=true; break; 
